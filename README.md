@@ -23,4 +23,3 @@ Things you may want to cover:
 
 * ...
 # airbed-n-coffee
-# airbed-n-coffee
