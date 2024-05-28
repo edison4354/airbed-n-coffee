@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: airbed_n_coffee_production
-  username: airbed_n_coffee
-  password: <%= ENV["AIRBED_N_COFFEE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
