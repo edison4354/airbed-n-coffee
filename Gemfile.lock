@@ -75,21 +75,33 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     base64 (0.2.0)
+    bcrypt (3.1.20)
+    better_errors (2.10.1)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
+      rouge (>= 1.0.0)
     bigdecimal (3.1.8)
+    binding_of_caller (1.0.1)
+      debug_inspector (>= 1.2.0)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     builder (3.2.4)
+    byebug (11.1.3)
+    coderay (1.1.3)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
-    debug (1.9.2)
-      irb (~> 1.10)
-      reline (>= 0.3.8)
+    debug_inspector (1.2.0)
     drb (2.2.1)
     error_highlight (0.6.0)
     erubi (1.12.0)
+    faker (3.3.1)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.5)
@@ -98,6 +110,9 @@ GEM
     irb (1.13.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    jbuilder (2.12.0)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -107,6 +122,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.23.0)
     msgpack (1.7.2)
@@ -134,6 +150,11 @@ GEM
     nokogiri (1.16.5-x86_64-linux)
       racc (~> 1.4)
     pg (1.5.6)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     psych (5.1.2)
       stringio
     puma (6.4.2)
@@ -181,6 +202,7 @@ GEM
       psych (>= 4.0.0)
     reline (0.5.7)
       io-console (~> 0.5)
+    rouge (4.2.1)
     stringio (3.1.0)
     thor (1.3.1)
     timeout (0.4.1)
@@ -201,10 +223,17 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  annotate
+  bcrypt
+  better_errors
+  binding_of_caller
   bootsnap
-  debug
+  byebug
   error_highlight (>= 0.4.0)
+  faker
+  jbuilder
   pg (~> 1.1)
+  pry-rails
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
   tzinfo-data
