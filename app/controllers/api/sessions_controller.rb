@@ -1,7 +1,4 @@
 class Api::SessionsController < ApplicationController
-    # before_action :require_logged_out, only: [:show, :create]
-    # before_action :require_logged_in, only: [:destroy]
-
     def show
         if current_user
             @user = current_user
@@ -25,9 +22,7 @@ class Api::SessionsController < ApplicationController
     end
 
     def destroy
-        if current_user
-            logout!
-            render json: { message: 'success' }
-        end
+        logout!
+        render json: { message: 'success' }
     end
 end
