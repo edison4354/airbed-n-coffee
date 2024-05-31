@@ -4,6 +4,7 @@ import { Outlet, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginForm from './components/session/LoginForm';
 import SignupForm from './components/session/SignupForm';
 import Navigation from './components/Navigation';
+import Modal from './components/modals/Modal';
 import * as sessionActions from './store/session';
 
 function Layout() {
@@ -18,8 +19,9 @@ function Layout() {
 
   return (
     <>
-      <Navigation />
-      {isLoaded && <Outlet />}
+        <Modal title="Login" isOpen={false} />
+        <Navigation />
+        {isLoaded && <Outlet />}
     </>
   );
 }
@@ -30,7 +32,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <h1 className="text-3xl font-bold underline"> Hello world! </h1>
       },
       {
         path: 'login',
