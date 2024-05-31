@@ -1,14 +1,39 @@
 import { AiOutlineMenu } from 'react-icons/ai'
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
+import { openLoginModal, openRegisterModal } from '../../store/modal';
+import * as sessionActions from '../../store/session';
 
 const UserMenu = () => {
+    const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false)
+    const [loggedIn, setLoggedIn] = useState(false)
+
+    const sessionUser = useSelector(state => state.session.user);
+    
+    useEffect(() => {
+        setLoggedIn(!!sessionUser);
+        setIsOpen(false);
+    }, [sessionUser]);
+    
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, []);
+
+    const onLoginOpen = () => {
+        dispatch(openLoginModal());
+    }
+
+    const onRegisterOpen = () => {
+        dispatch(openRegisterModal());
+    }
+
+    const handleLogout = () => {
+        dispatch(sessionActions.logout());
+    };
     
     return (
         <div className="relative">
@@ -52,16 +77,23 @@ const UserMenu = () => {
                     '
                 >
                     <div className='flex flex-col cursor-pointer'>
-                        <>
-                            <MenuItem 
-                                onClick={() => {}}
-                                label="Login"
+                        {!loggedIn ? (
+                            <>
+                                <MenuItem
+                                    onClick={onLoginOpen}
+                                    label="Login"
+                                />
+                                <MenuItem 
+                                    onClick={onRegisterOpen}
+                                    label="Sign up"
+                                />
+                            </>
+                        ) : (
+                            <MenuItem
+                                label="Logout"
+                                onClick={handleLogout}
                             />
-                            <MenuItem 
-                                onClick={() => {}}
-                                label="Sign up"
-                            />
-                        </>
+                        )}
                     </div>
                 </div>
             )}

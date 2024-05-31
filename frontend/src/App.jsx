@@ -4,8 +4,9 @@ import { Outlet, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginForm from './components/session/LoginForm';
 import SignupForm from './components/session/SignupForm';
 import Navbar from './components/navbar/Navbar';
-import Modal from './components/modals/Modal';
 import * as sessionActions from './store/session';
+import RegisterModal from './components/modals/RegisterModal';
+import LoginModal from './components/modals/LoginModal';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -19,7 +20,8 @@ function Layout() {
 
   return (
     <>
-        <Modal title="Login" isOpen={true} actionLabel={"Submit"}/>
+        <RegisterModal />
+        <LoginModal />
         <Navbar />
         {isLoaded && <Outlet />}
     </>
