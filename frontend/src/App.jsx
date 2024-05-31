@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Outlet, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginForm from './components/session/LoginForm';
 import SignupForm from './components/session/SignupForm';
-import Navigation from './components/Navigation';
+import Navbar from './components/navbar/Navbar';
 import Modal from './components/modals/Modal';
 import * as sessionActions from './store/session';
 
@@ -19,8 +19,8 @@ function Layout() {
 
   return (
     <>
-        <Modal title="Login" isOpen={false} />
-        <Navigation />
+        <Modal title="Login" isOpen={true} actionLabel={"Submit"}/>
+        <Navbar />
         {isLoaded && <Outlet />}
     </>
   );

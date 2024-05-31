@@ -1,27 +1,26 @@
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
+// import { NavLink } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import ProfileButton from './ProfileButton';
 import Container from '../Container';
 import Logo from './Logo';
-import './Navigation.css';
 import UserMenu from './UserMenu';
 
-function Navigation() {
-  const sessionUser = useSelector(state => state.session.user);
+function Navbar() {
+//   const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <ProfileButton user={sessionUser} />
-    );
-  } else {
-    sessionLinks = (
-      <div>
-        <NavLink to="/signup">Sign Up</NavLink>
-        <NavLink to="/login">Log In</NavLink>
-      </div>
-    );
-  }
+//   let sessionLinks;
+//   if (sessionUser) {
+//     sessionLinks = (
+//       <ProfileButton user={sessionUser} />
+//     );
+//   } else {
+//     sessionLinks = (
+//       <div>
+//         <NavLink to="/signup">Sign Up</NavLink>
+//         <NavLink to="/login">Log In</NavLink>
+//       </div>
+//     );
+//   }
 
   return (
     <div className='fixed w-full bg-white z-10 shadow-sm'>
@@ -46,4 +45,4 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+export default Navbar;
