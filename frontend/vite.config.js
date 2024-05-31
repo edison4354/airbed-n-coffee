@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import eslint from 'vite-plugin-eslint';
+import svgr from '@svgr/rollup';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -9,7 +10,8 @@ export default defineConfig(({ mode }) => ({
     eslint({
       lintOnStart: true,
       failOnError: mode === "production"
-    })
+    }),
+    svgr()
   ],
   // To automatically open the app in the browser whenever the server starts,
   // uncomment the following lines:
