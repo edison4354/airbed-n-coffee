@@ -30,7 +30,7 @@ const RegisterModal = () => {
         e.preventDefault();
         if (password) {
           setErrors([]);
-          return dispatch(sessionActions.signup({ email, firstName, lastName, password }))
+          return dispatch(sessionActions.signup({ firstName, lastName, email, password }))
             .catch(async (res) => {
             let data;
             try {
