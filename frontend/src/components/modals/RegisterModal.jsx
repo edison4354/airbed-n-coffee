@@ -4,6 +4,8 @@ import { closeRegisterModal } from '../../store/modal';
 import * as sessionActions from '../../store/session';
 import Modal from './Modal';
 import Heading from "../Heading";
+// import { IconContext } from "react-icons";
+import { FaCircleXmark } from "react-icons/fa6";
 
 const RegisterModal = () => {
     const dispatch = useDispatch();
@@ -52,113 +54,201 @@ const RegisterModal = () => {
                 title="Welcome to Airbnb"
             />
             <form onSubmit={handleSubmit}>
-                <ul className='text-red-600'>
-                    {errors.map(error => <li key={error}>{error}</li>)}
+                <div className='mb-5'>
+                    <div className="w-full relative">
+                        <input
+                                className='
+                                    peer
+                                    w-full
+                                    p-4
+                                    pt-6 
+                                    font-light 
+                                    bg-white 
+                                    border-x-2
+                                    border-t-2
+                                    rounded-tl-lg
+                                    rounded-tr-lg
+                                    outline-none
+                                    transition
+                                    disabled:opacity-70
+                                    disabled:cursor-not-allowed
+                                    pl-4
+                                    border-neutral-300
+                                    focus:border-black
+                                '
+                                placeholder=" "
+                                type="text"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                        />
+                        <label 
+                            className='
+                                absolute 
+                                text-sm
+                                duration-150 
+                                transform 
+                                -translate-y-3 
+                                top-5 
+                                z-10 
+                                origin-[0] 
+                                left-4
+                                peer-placeholder-shown:scale-125 
+                                peer-placeholder-shown:translate-y-1
+                                peer-focus:scale-100
+                                peer-focus:-translate-y-3
+                                text-zinc-400
+                            '
+                        >
+                            First Name
+                        </label>
+                    </div>
+                    <div className="w-full relative">
+                        <input
+                                className='
+                                    peer
+                                    w-full
+                                    p-4
+                                    pt-6 
+                                    font-light 
+                                    bg-white 
+                                    border-2
+                                    rounded-bl-lg
+                                    rounded-br-lg
+                                    outline-none
+                                    transition
+                                    disabled:opacity-70
+                                    disabled:cursor-not-allowed
+                                    pl-4
+                                    border-neutral-300
+                                    focus:border-black
+                                '
+                                type="text"
+                                placeholder=" "
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                        />
+                        <label 
+                            className='
+                                absolute 
+                                text-sm
+                                duration-150 
+                                transform 
+                                -translate-y-3 
+                                top-5 
+                                z-10 
+                                origin-[0] 
+                                left-4
+                                peer-placeholder-shown:scale-125 
+                                peer-placeholder-shown:translate-y-1
+                                peer-focus:scale-100
+                                peer-focus:-translate-y-3
+                                text-zinc-400
+                            '
+                        >
+                            Last Name
+                        </label>
+                    </div>
+                </div>
+                <div className='"w-full mb-5 relative'>
+                    <input
+                        className='
+                            peer
+                            w-full
+                            p-4
+                            pt-6 
+                            font-light 
+                            bg-white 
+                            border-2
+                            rounded-lg
+                            outline-none
+                            transition
+                            disabled:opacity-70
+                            disabled:cursor-not-allowed
+                            pl-4
+                            border-neutral-300
+                            focus:border-black
+                        '
+                        type="text"
+                        placeholder=" "
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <label 
+                        className='
+                                absolute 
+                                text-sm
+                                duration-150 
+                                transform 
+                                -translate-y-3 
+                                top-5 
+                                z-10 
+                                origin-[0] 
+                                left-4
+                                peer-placeholder-shown:scale-125 
+                                peer-placeholder-shown:translate-y-1
+                                peer-focus:scale-100
+                                peer-focus:-translate-y-3
+                                text-zinc-400
+                        '
+                    >
+                        Email
+                    </label>
+                </div>
+                <div className='"w-full relative'>
+                    <input
+                        className='
+                            peer
+                            w-full
+                            p-4
+                            pt-6 
+                            font-light 
+                            bg-white 
+                            border-2
+                            rounded-lg
+                            outline-none
+                            transition
+                            disabled:opacity-70
+                            disabled:cursor-not-allowed
+                            pl-4
+                            border-neutral-300
+                            focus:border-black
+                        '
+                        type="password"
+                        placeholder=" "
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <label 
+                        className='
+                                absolute 
+                                text-sm
+                                duration-150 
+                                transform 
+                                -translate-y-3 
+                                top-5 
+                                z-10 
+                                origin-[0] 
+                                left-4
+                                peer-placeholder-shown:scale-125 
+                                peer-placeholder-shown:translate-y-1
+                                peer-focus:scale-100
+                                peer-focus:-translate-y-3
+                                text-zinc-400
+                        '
+                    >
+                        Password
+                    </label>
+                </div>
+                <ul className='text-red-600 mt-1'>
+                    {errors.map(error => 
+                        <li key={error} className='text-xs font-semibold flex gap-2 items-center'>
+                            <FaCircleXmark /> 
+                            {error}
+                        </li>
+                    )}
                 </ul>
-                <label>
-                    First Name
-                    <input
-                        className='
-                            peer
-                            w-full
-                            p-4
-                            pt-6 
-                            font-light 
-                            bg-white 
-                            border-2
-                            rounded-md
-                            outline-none
-                            transition
-                            disabled:opacity-70
-                            disabled:cursor-not-allowed
-                            pl-4
-                            border-neutral-300
-                            focus:border-black
-                        '
-                        type="text"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Last Name
-                    <input
-                        className='
-                            peer
-                            w-full
-                            p-4
-                            pt-6 
-                            font-light 
-                            bg-white 
-                            border-2
-                            rounded-md
-                            outline-none
-                            transition
-                            disabled:opacity-70
-                            disabled:cursor-not-allowed
-                            pl-4
-                            border-neutral-300
-                            focus:border-black
-                        '
-                        type="text"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                Email
-                <input
-                    className='
-                        peer
-                        w-full
-                        p-4
-                        pt-6 
-                        font-light 
-                        bg-white 
-                        border-2
-                        rounded-md
-                        outline-none
-                        transition
-                        disabled:opacity-70
-                        disabled:cursor-not-allowed
-                        pl-4
-                        border-neutral-300
-                        focus:border-black
-                    '
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                </label>
-                <label>
-                Password
-                <input
-                    className='
-                        peer
-                        w-full
-                        p-4
-                        pt-6 
-                        font-light 
-                        bg-white 
-                        border-2
-                        rounded-md
-                        outline-none
-                        transition
-                        disabled:opacity-70
-                        disabled:cursor-not-allowed
-                        pl-4
-                        border-neutral-300
-                        focus:border-black
-                    '
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                </label>
                 <button 
                     type="submit"
                     className='

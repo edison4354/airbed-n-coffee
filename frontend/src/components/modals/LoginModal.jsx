@@ -34,9 +34,17 @@ const LoginModal = () => {
             } catch {
               data = await res.text(); // Will hit this case if, e.g., server is down
             }
-            if (data?.errors) setErrors(data.errors);
-            else if (data) setErrors([data]);
-            else setErrors([res.statusText]);
+
+            // Check if unauthorized error (typically 401)
+            if (res.status === 401) {
+                setErrors(["Incorrect username or password"]);
+            } else if (data?.errors) {
+                setErrors(data.errors);
+            } else if (data) {
+                setErrors([data]);
+            } else {
+                setErrors([res.statusText]);
+            }
           });
     };
 
@@ -46,58 +54,98 @@ const LoginModal = () => {
                 <ul className='text-red-600'>
                     {errors.map(error => <li key={error}>{error}</li>)}
                 </ul>
-                <label>
-                Email
-                <input
-                    className='
-                        peer
-                        w-full
-                        p-4
-                        pt-6 
-                        font-light 
-                        bg-white 
-                        border-2
-                        rounded-md
-                        outline-none
-                        transition
-                        disabled:opacity-70
-                        disabled:cursor-not-allowed
-                        pl-4
-                        border-neutral-300
-                        focus:border-black
-                    '
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                </label>
-                <label>
-                Password
-                <input
-                    className='
-                        peer
-                        w-full
-                        p-4
-                        pt-6 
-                        font-light 
-                        bg-white 
-                        border-2
-                        rounded-md
-                        outline-none
-                        transition
-                        disabled:opacity-70
-                        disabled:cursor-not-allowed
-                        pl-4
-                        border-neutral-300
-                        focus:border-black
-                    '
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                </label>
+                <div className='"w-full mb-5 relative'>
+                    <input
+                        className='
+                            peer
+                            w-full
+                            p-4
+                            pt-6 
+                            font-light 
+                            bg-white 
+                            border-2
+                            rounded-lg
+                            outline-none
+                            transition
+                            disabled:opacity-70
+                            disabled:cursor-not-allowed
+                            pl-4
+                            border-neutral-300
+                            focus:border-black
+                        '
+                        type="text"
+                        placeholder=" "
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <label 
+                        className='
+                                absolute 
+                                text-sm
+                                duration-150 
+                                transform 
+                                -translate-y-3 
+                                top-5 
+                                z-10 
+                                origin-[0] 
+                                left-4
+                                peer-placeholder-shown:scale-125 
+                                peer-placeholder-shown:translate-y-1
+                                peer-focus:scale-100
+                                peer-focus:-translate-y-3
+                                text-zinc-400
+                        '
+                    >
+                        Email
+                    </label>
+                </div>
+                <div className='"w-full relative'>
+                    <input
+                        className='
+                            peer
+                            w-full
+                            p-4
+                            pt-6 
+                            font-light 
+                            bg-white 
+                            border-2
+                            rounded-lg
+                            outline-none
+                            transition
+                            disabled:opacity-70
+                            disabled:cursor-not-allowed
+                            pl-4
+                            border-neutral-300
+                            focus:border-black
+                        '
+                        type="password"
+                        placeholder=" "
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <label 
+                        className='
+                                absolute 
+                                text-sm
+                                duration-150 
+                                transform 
+                                -translate-y-3 
+                                top-5 
+                                z-10 
+                                origin-[0] 
+                                left-4
+                                peer-placeholder-shown:scale-125 
+                                peer-placeholder-shown:translate-y-1
+                                peer-focus:scale-100
+                                peer-focus:-translate-y-3
+                                text-zinc-400
+                        '
+                    >
+                        Password
+                    </label>
+                </div>
                 <button 
                     type="submit"
                     className='
@@ -126,7 +174,6 @@ const LoginModal = () => {
 
     return (
         <Modal 
-            // disabled={isLoading}
             isOpen={isLoginOpen}
             title="Welcome back"
             onClose={onClose}

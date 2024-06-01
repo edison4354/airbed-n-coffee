@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from 'react-icons/io'
-import Button from "../Button";
 
 const Modal = ({
 	isOpen,
 	onClose,
-	onSubmit,
 	title,
 	body,
 	disabled,
