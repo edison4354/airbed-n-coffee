@@ -34,6 +34,11 @@ class User < ApplicationRecord
         self.session_token
     end
 
+    has_many :listings,
+        primary_key: :id,
+        foreign_key: :host_id,
+        class_name: :Listing
+
     private 
 
     def generate_unique_session_token
