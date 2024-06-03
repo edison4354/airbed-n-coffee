@@ -9,7 +9,7 @@ import { FaCircleXmark } from "react-icons/fa6";
 
 const RegisterModal = () => {
     const dispatch = useDispatch();
-    const isRegisterOpen = useSelector((state) => state.modalReducer.isRegisterOpen);
+    const isRegisterOpen = useSelector((state) => state.modal.isRegisterOpen);
     const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
