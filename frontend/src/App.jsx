@@ -7,6 +7,8 @@ import Navbar from './components/navbar/Navbar';
 import * as sessionActions from './store/session';
 import RegisterModal from './components/modals/RegisterModal';
 import LoginModal from './components/modals/LoginModal';
+import ListingsGrid from './components/listings/ListingsGrid';
+import ListingDetail from './components/listings/ListingDetail';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -34,7 +36,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1 className="text-3xl font-bold underline"> Hello world! </h1>
+        element: 
+            <div className="pb-20 pt-24">
+                <ListingsGrid />
+            </div>
       },
       {
         path: 'login',
@@ -43,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: 'signup',
         element: <SignupForm />
+      },
+      {
+        path: '/listings/:id',
+        element: <ListingDetail />
       }
     ]
   }

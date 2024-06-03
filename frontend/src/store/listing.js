@@ -1,14 +1,14 @@
 import { csrfFetch } from "./csrf";
 
-// const RECEIVE_LISTING = 'RECEIVE_TEA';
+const RECEIVE_LISTING = 'RECEIVE_TEA';
 const RECEIVE_LISTINGS = 'RECEIVE_TEAS';
 
-// const receiveListing = listing => {
-//     return {
-//         type: RECEIVE_LISTING,
-//         listing: listing
-//     }
-// };
+const receiveListing = listing => {
+    return {
+        type: RECEIVE_LISTING,
+        listing: listing
+    }
+};
 
 const receiveListings = listings => {
     return {
@@ -17,11 +17,11 @@ const receiveListings = listings => {
     }
 };
 
-// export const fetchListing = (listingId) => async dispatch => {
-//     const res = await csrfFetch(`/api/listing/${listingId}`);
-//     const data = await res.json();
-//     dispatch(receiveListing(data));
-// };
+export const fetchListing = (listingId) => async dispatch => {
+    const res = await csrfFetch(`/api/listing/${listingId}`);
+    const data = await res.json();
+    dispatch(receiveListing(data));
+};
 
 
 export const fetchAllListings = () => async dispatch => {
@@ -37,9 +37,8 @@ const listingReducer = (state = {}, action) => {
     const nextState = { ...state }; 
 
     switch (action.type) {
-        // case RECEIVE_LISTING:
-        //     nextState[action.tea.id] = action.listing;
-        //     return nextState;
+        case RECEIVE_LISTING:
+            return { ...nextState, [action.listing.id]: action.listing };
         case RECEIVE_LISTINGS:
             return { ...nextState, ...action.listings };
         default:
