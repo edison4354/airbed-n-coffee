@@ -74,7 +74,7 @@ ApplicationRecord.transaction do
         Listing.create!(
             host_id: User.first.id,
             title: 'Demo Listing',
-            description: 'This is a demo listing. It is a great place to stay!',
+            description: 'A home for all seasons, and retaining its gorgeous redwood post and beam architecture and soaring granite fireplace, this cozy but spacious mountain lodge is the perfect basecamp for all of your Tahoe adventures. Enjoy panoramic views from Rubicon peak to Mt Rose, and sapphire blue waters that appear to be so close you could almost reach it. The Heller Haus is perched atop a vista that allows for a truly four season Tahoe experience.',
             photo_url: './app/assets/images/demo-listing.jpg',
             category: 'Cabin',
             price_per_night: 100.00,
