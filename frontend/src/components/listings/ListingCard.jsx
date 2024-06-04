@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { IoIosStar } from "react-icons/io";
 
 const ListingCard = ({listing}) => {
     const navigate = useNavigate();
@@ -27,17 +28,18 @@ const ListingCard = ({listing}) => {
                             object-cover 
                             h-full
                             w-full
-                            group-hover:scale-110 
-                            transition
+                            group-hover:scale-110
+                            transition-transform
                         "
                         src="./../../../public/listing_image.png"
                         alt="Listing"
                     />
                 </div>
-                <div className="flex font-medium text-lg pt-2">
+                <div className="flex justify-between font-medium pt-2">
                     {listing.address}
-                    <div className=''>
-                        4.9
+                    <div className='flex items-center'>
+                        <IoIosStar /> 
+                        <p className='pl-1 font-light'>4.98</p>
                     </div>
                 </div>
                 <div className="font-light text-neutral-500">
