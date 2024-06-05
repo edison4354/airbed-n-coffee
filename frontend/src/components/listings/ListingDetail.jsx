@@ -125,7 +125,7 @@ const ListingDetail = () => {
                         </div>
                         <hr className='w-full'/>
                         <div>
-                            <h2 className="text-[22px] font-medium pt-8">Where you'll be</h2>
+                            <h2 className="text-[22px] font-medium pt-8">Where you&apos;ll be</h2>
                             <div className='border w-full h-[500px] mt-8 mb-8 rounded-lg'>
                             </div>
                         </div>
