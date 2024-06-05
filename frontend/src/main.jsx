@@ -6,6 +6,7 @@ import './index.css';
 import configureStore from './store';
 import { csrfFetch, restoreCSRF } from './store/csrf';
 import * as sessionActions from './store/session';
+import * as listingActions from './store/listing';
 
 const store = configureStore();
 
@@ -14,7 +15,10 @@ if (import.meta.env.MODE !== "production") {
     window.store = store;
     window.csrfFetch = csrfFetch;
     window.sessionActions = sessionActions;
-  }
+    window.listingActions = listingActions;
+}
+
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

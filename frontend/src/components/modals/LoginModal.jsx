@@ -6,7 +6,7 @@ import Modal from './Modal';
 
 const LoginModal = () => {
     const dispatch = useDispatch();
-    const isLoginOpen = useSelector((state) => state.modalReducer.isLoginOpen);
+    const isLoginOpen = useSelector((state) => state.modal.isLoginOpen);
     const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
