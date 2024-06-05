@@ -12,7 +12,7 @@ const ListingGrid = () => {
     }, [dispatch]);
 
     return (
-        <div className="flex flex-wrap justify-around gap-4 pl-20 pr-20"> 
+        <div className="flex flex-wrap justify-between gap-5 pl-10 pr-10 xl:pr-20 xl:pl-20"> 
             {listings.map(listing => (
                 <ListingCard key={listing.id} listing={listing}/>
             ))}
