@@ -11,7 +11,20 @@ const ListingCard = ({listing}) => {
     return (
         <div 
             onClick={handleClick}
-            className="w-full min-[580px]:w-[48%] min-[827px]:w-[48.5%] min-[947px]:w-[31.64%] min-[1029px]:w-[31.8%] min-[1159px]:w-[23.5%] min-[1409px]:w-[23.8%] min-[1639px]:w-[18.91%] min-[1759px]:w-[19%] min-[1882px]:w-[15.7%] cursor-pointer group"
+            className="
+                w-full 
+                min-[580px]:w-[48%] 
+                min-[827px]:w-[48.5%] 
+                min-[947px]:w-[31.64%] 
+                min-[1029px]:w-[31.8%] 
+                min-[1159px]:w-[23.5%] 
+                min-[1409px]:w-[23.8%] 
+                min-[1639px]:w-[18.91%] 
+                min-[1759px]:w-[19%] 
+                min-[1882px]:w-[15.7%] 
+                cursor-pointer 
+                group
+            "
         >
             <div className="flex flex-col">
                 <div 
