@@ -5,10 +5,12 @@ import { fetchListing } from "../../store/listing";
 import { IoIosStar } from 'react-icons/io';
 import { FaWifi } from "react-icons/fa";
 import { MdOutlinePool } from "react-icons/md";
-import { IoSnow } from "react-icons/io5";
-import { IoCarOutline } from "react-icons/io5";
+import { IoSnow, IoCarOutline } from "react-icons/io5";
 import { TbToolsKitchen2 } from "react-icons/tb";
 import { PiBathtub } from "react-icons/pi";
+import { statesObject } from './states';
+import OceanIcon from '../../../public/view_icon.png';
+import { FaHotjar } from "react-icons/fa";
 
 
 const ListingDetail = () => {
@@ -16,8 +18,11 @@ const ListingDetail = () => {
     const dispatch = useDispatch();
     const listing = useSelector((state) => state.listing[id]);
 
+    const city = listing.address.split(',')[1]
+    const state = statesObject[listing.address.split(',')[2].trim().slice(0, 2)]
+    
     useEffect(() => {
-        dispatch(fetchListing(id));
+        dispatch(fetchListing(id));                
     }, [dispatch, id]);
 
     return (
@@ -25,19 +30,19 @@ const ListingDetail = () => {
             <div className='flex flex-col'>
                 <h1 className="text-[28px] font-medium ">Oceanfront l Deluxe Suite l Full Kitchen</h1>
                 <div className="flex items-center gap-2 mt-5 rounded-xl overflow-hidden">
-                    <img src="./../../../public/listing_image.png" alt="Listing" className="w-[560px] h-[462px]"/>
+                    <img src={listing.photoUrls[0]} alt="Listing" className="w-[560px] h-[462px]"/>
                     <div className='grid grid-rows-2 grid-flow-col gap-2'>
-                        <img src="./../../../public/listing_image_2.png" alt="Listing" className="w-[272px] h-[227px]"/>
-                        <img src="./../../../public/listing_image_2.png" alt="Listing" className="w-[272px] h-[227px]"/>
-                        <img src="./../../../public/listing_image_2.png" alt="Listing" className="w-[272px] h-[227px]"/>
-                        <img src="./../../../public/listing_image_2.png" alt="Listing" className="w-[272px] h-[227px]"/>       
+                        <img src={listing.photoUrls[1]} alt="Listing" className="object-cover w-[272px] h-[227px]"/>
+                        <img src={listing.photoUrls[2]} alt="Listing" className="object-cover w-[272px] h-[227px]"/>
+                        <img src={listing.photoUrls[3]} alt="Listing" className="object-cover w-[272px] h-[227px]"/>
+                        <img src={listing.photoUrls[4]} alt="Listing" className="object-cover w-[272px] h-[227px]"/>       
                     </div>
                 </div>
                 <div className='flex flex-row justify-between'>
                     <div>
                         <div className='pb-8 pt-8'>
                             <h2 className="text-[22px] font-medium">
-                                Entire home in Half Moon Bay, California
+                                Entire home in {city}, {state}
                             </h2>
                             <div className="flex items-center gap-1">
                                 <p className="text-base font-light">6 guests</p>
@@ -59,7 +64,7 @@ const ListingDetail = () => {
                             <img src="./../../../public/profile.png" alt="Profile Image" className=" rounded-full w-10 h-10"/>
                             <div className='pl-3'>
                                 <p className="text-base font-medium">Hosted by {listing.host.firstName} {listing.host.lastName}</p>
-                                <p className="text-sm font-light text-slate-500">2 years hosting</p>
+                                <p className="text-sm font-light text-slate-500">{Math.floor(Math.random() * 10)} years hosting</p>
                             </div>
                         </div>
                         <hr className='w-[653px]'/>
@@ -78,7 +83,9 @@ const ListingDetail = () => {
                                             {amenity == "Air Conditioning" ? <IoSnow className='text-lg'/> : null} 
                                             {amenity == "Parking" ? <IoCarOutline className='text-lg'/> : null} 
                                             {amenity == "Kitchen" ? <TbToolsKitchen2 className='text-lg'/> : null}
-                                            {amenity == "Bathtub" ? <PiBathtub className='text-lg'/> : null}  
+                                            {amenity == "Bathtub" ? <PiBathtub className='text-lg'/> : null}
+                                            {amenity == "Central Heating" ? <FaHotjar className='text-lg'/> : null}  
+                                            {amenity == "Ocean View" ? <img src={OceanIcon} alt="Ocean_Icon" className='w-[17px] h-[17px]'/> : null}    
                                             {amenity}
                                         </div>
                                     </div>
@@ -125,7 +132,7 @@ const ListingDetail = () => {
                         </div>
                         <hr className='w-full'/>
                         <div>
-                            <h2 className="text-[22px] font-medium pt-8">Where you'll be</h2>
+                            <h2 className="text-[22px] font-medium pt-8">Where you&apos;ll be</h2>
                             <div className='border w-full h-[500px] mt-8 mb-8 rounded-lg'>
                             </div>
                         </div>
