@@ -6,9 +6,8 @@
 #  host_id         :bigint           not null
 #  title           :string           not null
 #  description     :text             not null
-#  photo_url       :string           not null
 #  category        :string           not null
-#  price_per_night :decimal(10, 2)   not null
+#  price_per_night :integer          not null
 #  address         :string           not null
 #  num_bedrooms    :integer          not null
 #  num_bathrooms   :integer          not null
@@ -20,9 +19,9 @@ class Listing < ApplicationRecord
     AMENITIES = ['WiFi', 'Pool', 'Parking', 'Air Conditioning', 'Kitchen', 'Bathtub', 'Central Heating', 'Ocean View'] # Constants are capitalized by convention
     CATEGORIES = ['Beach', 'Cabin', 'Beachfront', 'Lakefront', 'Countryside', 'Icons', 'Offgrid', 'Amazing Pools', 'Amazing Views', 'OMG', 'Treehouse', 'Mansions']
 
-    validates :host, :title, :description, :photo_url, :category, :price_per_night, :address, :num_bedrooms, :num_bathrooms, :amenities, presence: true
+    validates :host, :title, :description, :category, :price_per_night, :address, :num_bedrooms, :num_bathrooms, :amenities, presence: true
     validates :title, length: { minimum: 6 , maximum: 255 }
-    validates :price_per_night, numericality: { greater_than: 0 }
+    validates :price_per_night, numericality: { only_integer: true, greater_than: 0 }
     validates :num_bedrooms, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
     validates :num_bathrooms, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
     validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid category" }
@@ -32,6 +31,8 @@ class Listing < ApplicationRecord
         primary_key: :id,
         foreign_key: :host_id,
         class_name: :User
+    
+    has_many_attached :photos
 
     private 
 

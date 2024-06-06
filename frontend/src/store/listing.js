@@ -6,7 +6,7 @@ const RECEIVE_LISTINGS = 'RECEIVE_TEAS';
 const receiveListing = listing => {
     return {
         type: RECEIVE_LISTING,
-        listing: listing
+        listing
     }
 };
 
@@ -18,17 +18,20 @@ const receiveListings = listings => {
 };
 
 export const fetchListing = (listingId) => async dispatch => {
-    const res = await csrfFetch(`/api/listing/${listingId}`);
+    const res = await csrfFetch(`/api/listings/${listingId}`);
     const data = await res.json();
     dispatch(receiveListing(data));
 };
 
 
 export const fetchAllListings = () => async dispatch => {
-    // debugger
     const res = await csrfFetch('/api/listings');
     const data = await res.json();
-    dispatch(receiveListings(data));
+    const listingsById = data.reduce((acc, listing) => {
+      acc[listing.id] = listing;
+      return acc;
+    }, {});
+    dispatch(receiveListings(listingsById));
 };
 
 const listingReducer = (state = {}, action) => {
