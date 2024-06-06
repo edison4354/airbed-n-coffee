@@ -8,9 +8,19 @@ class ApplicationController < ActionController::API
     protect_from_forgery with: :exception
     before_action :snake_case_params, :attach_authenticity_token
 
+    def logged_in?
+        !!current_user
+    end
+
     def current_user
         current_session_token = session[:session_token]
         @current_user ||= User.find_by(session_token: current_session_token)
+    end
+
+    def require_logged_in
+        unless logged_in?
+            render json: { error: 'You must be logged in to perform this action' }, status: :unauthorized
+        end
     end
 
     def login(user)

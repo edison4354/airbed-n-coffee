@@ -14,6 +14,16 @@
 class User < ApplicationRecord
     has_secure_password
 
+    has_many :listings,
+        primary_key: :id,
+        foreign_key: :host_id,
+        class_name: :Listing
+
+    has_many :reservations,
+        primary_key: :id,
+        foreign_key: :guest_id,
+        class_name: :Reservation
+
     validates :email,
         uniqueness: true, 
         length: { in: 3..100 }, 
@@ -33,11 +43,6 @@ class User < ApplicationRecord
         self.update!(session_token: generate_unique_session_token)
         self.session_token
     end
-
-    has_many :listings,
-        primary_key: :id,
-        foreign_key: :host_id,
-        class_name: :Listing
 
     private 
 

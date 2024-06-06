@@ -19,6 +19,18 @@ class Listing < ApplicationRecord
     AMENITIES = ['WiFi', 'Pool', 'Parking', 'Air Conditioning', 'Kitchen', 'Bathtub', 'Central Heating', 'Ocean View'] # Constants are capitalized by convention
     CATEGORIES = ['Beach', 'Cabin', 'Beachfront', 'Lakefront', 'Countryside', 'Icons', 'Offgrid', 'Amazing Pools', 'Amazing Views', 'OMG', 'Treehouse', 'Mansions']
 
+    belongs_to :host,
+        primary_key: :id,
+        foreign_key: :host_id,
+        class_name: :User
+
+    has_many_attached :photos
+
+    has_many :reservations,
+        primary_key: :id,
+        foreign_key: :listing_id,
+        class_name: :Reservation
+
     validates :host, :title, :description, :category, :price_per_night, :address, :num_bedrooms, :num_bathrooms, :amenities, presence: true
     validates :title, length: { minimum: 6 , maximum: 255 }
     validates :price_per_night, numericality: { only_integer: true, greater_than: 0 }
@@ -26,13 +38,6 @@ class Listing < ApplicationRecord
     validates :num_bathrooms, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
     validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid category" }
     validate :amenities_must_be_valid
-
-    belongs_to :host,
-        primary_key: :id,
-        foreign_key: :host_id,
-        class_name: :User
-    
-    has_many_attached :photos
 
     private 
 

@@ -13,6 +13,7 @@ require "open-uri"
 
 puts "Destroying tables..."
 # Unnecessary if using `rails db:seed:replant`
+Reservation.destroy_all
 Listing.destroy_all
 User.destroy_all
 
@@ -20,6 +21,7 @@ puts "Resetting primary keys..."
 # For easy testing, so that after seeding, the first `User` has `id` of 1
 ApplicationRecord.connection.reset_pk_sequence!('users')
 ApplicationRecord.connection.reset_pk_sequence!('listings')
+ApplicationRecord.connection.reset_pk_sequence!('reservations')
 
 puts "Creating users..."
 # Create one user with an easy to remember username, email, and password:
@@ -40,21 +42,7 @@ User.create!(
 end
 
 puts "Creating listings..."
-# Create one listing with an easy to remember title, description, and price:
-# demoHouse = Listing.create!(
-#     host_id: User.first.id,
-#     title: 'Demo Listing',
-#     description: 'A home for all seasons, and retaining its gorgeous redwood post and beam architecture and soaring granite fireplace, this cozy but spacious mountain lodge is the perfect basecamp for all of your Tahoe adventures. Enjoy panoramic views from Rubicon peak to Mt Rose, and sapphire blue waters that appear to be so close you could almost reach it. The Heller Haus is perched atop a vista that allows for a truly four season Tahoe experience.',
-#     category: 'Cabin',
-#     price_per_night: 100,
-#     address: '1160 Mission St, San Francisco, CA 94103',
-#     num_bedrooms: 2,
-#     num_bathrooms: 1,
-#     amenities: ['WiFi', 'Pool', 'Parking', 'Air Conditioning', 'Kitchen', 'Bathtub']
-# )
-
-# demoHouse.photos.attach(io: URI.open("https://airbed-n-coffee-seeds.s3.us-west-1.amazonaws.com/cabin.png"), filename: "cabin.png")
-
+# Create listings with random data
 13.times do |i|
     listing = Listing.create!(
         host_id: User.all.sample.id,
@@ -73,5 +61,22 @@ puts "Creating listings..."
         listing.photos.attach(io: URI.open(image_url), filename: "listing#{i + 1}_image#{j + 1}.png")
     end
 end 
+
+
+puts "Creating reservations..."
+# Create reservations with random data
+Listing.all.each do |listing|
+    check_in = Faker::Date.between(from: Date.today, to: 1.year.from_now)
+    check_out = check_in + rand(3..10).days
+    num_guests = rand(1..10)
+
+    Reservation.create!(
+        listing_id: listing.id,
+        guest_id: User.all.sample.id,
+        check_in: check_in,
+        check_out: check_out,
+        num_guests: num_guests
+    )
+end
 
 puts "Done!"
