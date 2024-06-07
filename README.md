@@ -65,51 +65,51 @@ This project incorporates a variety of technologies to facilitate a full-stack w
 ### Reservations
 - Users can book reservations for their desired stay:
   - Full CRUD capabilities for managing reservations: allows users to view, create, update, and delete reservations, ensuring actions like creating or modifying a reservation require the user to be logged in. The controller includes error handling to provide feedback if an action fails, such as during creation or update due to missing or invalid data
-  ```ruby
-    class Api::ReservationsController < ApplicationController
-        before_action :require_logged_in, only: [:create, :update, :destroy]
-    
-        def index
-            @reservations = Reservation.all
-            render :index
-        end
-    
-        def update
-            @reservation = Reservation.find(params[:id])
-    
-            if @reservation.update(reservation_params)
-                render :index
-            else
-                render json: @reservation.errors.full_messages, status: 422
-            end
-        end
-    
-        def show
-            @reservation = Reservation.find(params[:id])
-            render :show
-        end
-    
-        def create
-            @reservation = Reservation.new(reservation_params)
-            @reservation.guest_id = current_user.id
-    
-            if @reservation.save
-                render :show
-            else
-                render json: @reservation.errors.full_messages, status: 422
-            end
-        end
-    
-        def destroy
-            @reservation = Reservation.find(params[:id])
-            @reservation.destroy
-            render :index
-        end
-    
-        private
-    
-        def reservation_params
-            params.require(:reservation).permit(:listing_id, :check_in, :check_out, :num_guests)
-        end
-    end
-  ```
+    ```ruby
+      class Api::ReservationsController < ApplicationController
+          before_action :require_logged_in, only: [:create, :update, :destroy]
+      
+          def index
+              @reservations = Reservation.all
+              render :index
+          end
+      
+          def update
+              @reservation = Reservation.find(params[:id])
+      
+              if @reservation.update(reservation_params)
+                  render :index
+              else
+                  render json: @reservation.errors.full_messages, status: 422
+              end
+          end
+      
+          def show
+              @reservation = Reservation.find(params[:id])
+              render :show
+          end
+      
+          def create
+              @reservation = Reservation.new(reservation_params)
+              @reservation.guest_id = current_user.id
+      
+              if @reservation.save
+                  render :show
+              else
+                  render json: @reservation.errors.full_messages, status: 422
+              end
+          end
+      
+          def destroy
+              @reservation = Reservation.find(params[:id])
+              @reservation.destroy
+              render :index
+          end
+      
+          private
+      
+          def reservation_params
+              params.require(:reservation).permit(:listing_id, :check_in, :check_out, :num_guests)
+          end
+      end
+    ```
