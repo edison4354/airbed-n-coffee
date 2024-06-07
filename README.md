@@ -21,7 +21,12 @@ This project incorporates a variety of technologies to facilitate a full-stack w
 
 # Features
 
-- User Authentication: Secure sign-up, login, and logout functionality.
-- Listings: Users can browse through various property listings with detailed descriptions and images.
-- Reservations: Users can book reservations for their desired stay directly through the platform.
-- Responsive Design: Fully responsive design to ensure usability across different devices.
+### User Authentication
+- Secure sign-up, login, and logout functionality.
+
+  
+### Listings
+- Users can browse through various property listings with detailed descriptions and images.
+  
+### Reservations
+- Users can book reservations for their desired stay directly through the platform.
