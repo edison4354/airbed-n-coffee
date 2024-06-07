@@ -48,7 +48,7 @@ This project incorporates a variety of technologies to facilitate a full-stack w
         }
     };
     ```
-  - Display error messages in a ui friendly component
+  - Errors are displayed to the user using a list that visually represents each error with an icon, enhancing the clarity of the feedback
     ```javascript
     <ul className='text-red-600 mt-1'>
         {errors.map((error, index) => 
