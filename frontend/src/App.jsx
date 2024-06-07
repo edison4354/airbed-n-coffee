@@ -9,6 +9,7 @@ import RegisterModal from './components/modals/RegisterModal';
 import LoginModal from './components/modals/LoginModal';
 import ListingsGrid from './components/listings/ListingsGrid';
 import ListingDetail from './components/listings/ListingDetail';
+import ReservationForm from './components/reservations/DatePicker';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -34,25 +35,29 @@ const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      {
-        path: '/',
-        element: 
-            <div className="pb-20 pt-24">
-                <ListingsGrid />
-            </div>
-      },
-      {
-        path: 'login',
-        element: <LoginForm />
-      },
-      {
-        path: 'signup',
-        element: <SignupForm />
-      },
-      {
-        path: '/listings/:id',
-        element: <ListingDetail />
-      }
+        {
+            path: '/',
+            element: 
+                <div className="pb-20 pt-24">
+                    <ListingsGrid />
+                </div>
+        },
+        {
+            path: 'login',
+            element: <LoginForm />
+        },
+        {
+            path: 'signup',
+            element: <SignupForm />
+        },
+        {
+            path: '/listings/:id',
+            element: <ListingDetail />
+        },
+        {
+            path: '/reservations',
+            element: <ReservationForm />
+        }
     ]
   }
 ]);

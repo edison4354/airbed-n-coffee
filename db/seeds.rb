@@ -43,24 +43,27 @@ end
 
 puts "Creating listings..."
 # Create listings with random data
-13.times do |i|
-    listing = Listing.create!(
-        host_id: User.all.sample.id,
-        title: Faker::Lorem.sentence(word_count: 3),
-        description: Faker::Lorem.paragraph(sentence_count: 20),
-        category: Listing::CATEGORIES.sample,
-        price_per_night: rand(50..500),
-        address: Faker::Address.full_address,
-        num_bedrooms: rand(1..10),
-        num_bathrooms: rand(1..5),
-        amenities: Listing::AMENITIES.sample(rand(1..Listing::AMENITIES.length)),
-    )
-
-    5.times do |j|
-        image_url = "https://airbed-n-coffee-seeds.s3.us-west-1.amazonaws.com/listing#{i + 1}_image#{j + 1}.png"
-        listing.photos.attach(io: URI.open(image_url), filename: "listing#{i + 1}_image#{j + 1}.png")
+5.times do |x|
+    13.times do |i|
+        listing = Listing.create!(
+            host_id: User.all.sample.id,
+            title: Faker::Lorem.sentence(word_count: 3),
+            description: Faker::Lorem.paragraph(sentence_count: 20),
+            category: Listing::CATEGORIES.sample,
+            price_per_night: rand(50..500),
+            address: Faker::Address.full_address,
+            num_bedrooms: rand(1..10),
+            num_bathrooms: rand(1..5),
+            amenities: Listing::AMENITIES.sample(rand(1..Listing::AMENITIES.length)),
+        )
+    
+        5.times do |j|
+            image_url = "https://airbed-n-coffee-seeds.s3.us-west-1.amazonaws.com/listing#{i + 1}_image#{j + 1}.png"
+            listing.photos.attach(io: URI.open(image_url), filename: "listing#{i + 1}_image#{j + 1}.png")
+        end
     end
-end 
+end
+
 
 
 puts "Creating reservations..."

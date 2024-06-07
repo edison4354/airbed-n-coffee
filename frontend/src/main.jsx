@@ -8,6 +8,7 @@ import { csrfFetch, restoreCSRF } from './store/csrf';
 import * as sessionActions from './store/session';
 import * as listingActions from './store/listing';
 
+
 const store = configureStore();
 
 if (import.meta.env.MODE !== "production") {

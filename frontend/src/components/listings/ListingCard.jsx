@@ -39,17 +39,23 @@ const ListingCard = ({ listing }) => {
                         aspect-[20/19]
                     "
                 >
-                    <img
-                        className="
-                            object-cover 
-                            h-full
-                            w-full
-                            group-hover:scale-110
-                            transition
-                        "
-                        src={`${listing.photoUrls[0]}`}
-                        alt="Listing"
-                    />
+                    {listing.photoUrls && listing.photoUrls[0] ? (
+                        <img
+                            className="
+                                object-cover 
+                                h-full
+                                w-full
+                                group-hover:scale-110
+                                transition
+                            "
+                            src={`${listing.photoUrls[0]}`}
+                            alt="Listing"
+                        />
+                    ) : (
+                        <div className="object-cover h-full w-full bg-gray-200">
+                            {/* Fallback content in case there's no image */}
+                        </div>
+                    )}
                 </div>
                 <div className="flex justify-between font-medium pt-2">
                     {city}, {state}

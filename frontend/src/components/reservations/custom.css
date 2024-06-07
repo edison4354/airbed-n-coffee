@@ -1,0 +1,127 @@
+/* src/custom-daterangepicker.css */
+
+/* Example custom styles for the DateRangePicker component */
+.react-daterange-picker__wrapper {
+    border: none;
+}
+
+.react-daterange-picker__calendar-button {
+    display: none;
+}
+
+.react-daterange-picker__clear-button {
+    display: none;
+}
+
+.react-daterange-picker__range-divider {
+    display: none;
+}
+
+.react-daterange-picker__inputGroup {
+    padding-left: 10.2px;
+}
+
+.react-calendar__tile--active {
+    background: black;
+    color: white;
+}
+
+.react-calendar__tile--range {
+    background: #F7F7F7;
+    color: black;
+}
+
+.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+    color: black;
+    background: #E6E6E6;
+}
+
+.react-calendar__tile--rangeStart, .react-calendar__tile--rangeEnd {
+    color: white !important;
+    background: black !important;
+    /* border-radius: 500px; */
+}
+
+.react-calendar__tile {
+    width: 50px;
+    padding-right: 7px;
+    padding-left: 7px;
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: black;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+    visibility: hidden;
+}
+
+.react-daterange-picker__calendar {
+    width: 322px;
+    border: none;
+}
+
+.react-calendar__tile--now {
+    background: white;
+}
+
+.react-calendar__tile--now:enabled:hover {
+    background: #F7F7F7;
+}
+
+.react-calendar__tile--range.react-calendar__tile--now {
+    background: #F7F7F7;
+}
+
+.react-calendar {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 -10px 15px -3px rgb(0 0 0 / 0.1), 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.calendar-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background-color: #B0B0B0; /* Adjust the color as needed */
+    transform: translateX(-50%);
+}
+
+.calendar-container {
+    width: 322px;
+    border: 1px solid #B0B0B0;
+    border-radius: 0.5rem; /* Tailwind's rounded-lg */
+    padding-bottom: 0.75rem; /* Tailwind's pb-3 */
+    position: relative;
+}
+
+.calendar-header {
+    font-weight: bold;
+    font-size: 10px;
+    display: flex;
+    width: 100%;
+    padding-top: 0.75rem; /* Tailwind's pt-3 */
+}
+
+.react-daterange-picker__calendar {
+    top: auto !important; /* Ensure the top position is not set */
+    bottom: auto !important; /* Ensure the bottom position is not set */
+    left: 0 !important; /* Align to the left of the input */
+    transform: translateY(30px) translateX(-1px)!important; /* Reset any vertical transformation */
+    z-index: 1000; /* Ensure the calendar is above other elements */
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+    text-decoration: none !important;
+    color: #6B6B6B;
+}
+
+input:focus {
+    outline: none;
+}

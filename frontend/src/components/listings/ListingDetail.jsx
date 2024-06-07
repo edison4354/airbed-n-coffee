@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchListing } from "../../store/listing";
@@ -11,19 +11,24 @@ import { PiBathtub } from "react-icons/pi";
 import { statesObject } from './states';
 import OceanIcon from '../../../public/view_icon.png';
 import { FaHotjar } from "react-icons/fa";
-
+import ReservationForm from '../reservations/ReservationForm';
 
 const ListingDetail = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const listing = useSelector((state) => state.listing[id]);
+    const listing = useSelector((state) => state.listing);
+    const [loading, setLoading] = useState(true);
+    
+    useEffect(() => {
+        dispatch(fetchListing(id)).then(() => setLoading(false));              
+    }, [dispatch, id]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     const city = listing.address.split(',')[1]
     const state = statesObject[listing.address.split(',')[2].trim().slice(0, 2)]
-    
-    useEffect(() => {
-        dispatch(fetchListing(id));                
-    }, [dispatch, id]);
 
     return (
         <div className="flex justify-center pt-24">
@@ -100,42 +105,44 @@ const ListingDetail = () => {
                         </div>
                     </div>
                     <div className='pb-8 pt-8'>
-                        <div className='border w-[372px] h-[606px] rounded-xl'>
+                        <div className='w-[372px] h-[606px]'>
+                            <ReservationForm/>
                         </div>
                     </div>
                 </div>
                 <hr className='w-full'/>
                 <div>
-                        <h2 className="flex items-center gap-2 text-[22px] font-medium pb-8 pt-8"> <IoIosStar /> 4.98 · 186 reviews</h2>
-                        <div className='border w-full h-[160px] mb-8 rounded-lg'>
-                        </div>
-                        <hr className='w-full'/>
-                        <div className='grid grid-cols-2 pt-8 pb-8 gap-y-16'>
-                            {Array(4)
-                                .fill(0)
-                                .map((_, index) => (
-                                <div key={index}>
-                                    <div>
-                                        <div className='flex gap-3'>
-                                            <img src="./../../../public/profile.png" alt="Profile Image" className=" rounded-full w-12 h-12"/>
-                                            <div>
-                                                <p className="text-base font-medium">Margarita</p>
-                                                <p className="text-sm font-light text-slate-500">Napa, California</p>
-                                            </div>
-                                        </div>
-                                        <div className='max-w-[457px] pt-4'>
-                                            <p className="text-base font-light">Very nice place. Pictures did make it seem like it was bigger but it wasn’t. Nice little town. roads to go inside very winding and pretty secluded area. Over all great experience.</p>
+                    <h2 className="flex items-center gap-2 text-[22px] font-medium pb-8 pt-8"> <IoIosStar /> 4.98 · 186 reviews</h2>
+                    <div className='border w-full h-[160px] mb-8 rounded-lg'>
+                    </div>
+                    <hr className='w-full'/>
+                    <div className='grid grid-cols-2 pt-8 pb-8 gap-y-16'>
+                        {Array(4)
+                            .fill(0)
+                            .map((_, index) => (
+                            <div key={index}>
+                                <div>
+                                    <div className='flex gap-3'>
+                                        <img src="./../../../public/profile.png" alt="Profile Image" className=" rounded-full w-12 h-12"/>
+                                        <div>
+                                            <p className="text-base font-medium">Margarita</p>
+                                            <p className="text-sm font-light text-slate-500">Napa, California</p>
                                         </div>
                                     </div>
+                                    <div className='max-w-[457px] pt-4'>
+                                        <p className="text-base font-light">Very nice place. Pictures did make it seem like it was bigger but it wasn’t. Nice little town. roads to go inside very winding and pretty secluded area. Over all great experience.</p>
+                                    </div>
                                 </div>
-                            ))}
-                        </div>
-                        <hr className='w-full'/>
-                        <div>
-                            <h2 className="text-[22px] font-medium pt-8">Where you&apos;ll be</h2>
-                            <div className='border w-full h-[500px] mt-8 mb-8 rounded-lg'>
                             </div>
+                        ))}
+                    </div>
+                    <hr className='w-full'/>
+                    <div>
+                        <h2 className="text-[22px] font-medium pt-8">Where you&apos;ll be</h2>
+                        <div className='border w-full h-[500px] mt-8 mb-8 rounded-lg'>
+                            Map
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
