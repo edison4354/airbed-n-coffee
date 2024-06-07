@@ -2,8 +2,7 @@
 
 Check out [live site!](https://airbed-n-coffee.onrender.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Airbed&Coffee is a clone of Airbnb - an online marketplace that connects people who want to rent out their homes or host experiences with those looking for accommodations or unique activities. A Airbnb user can create listings for their property/experience or book a stay/experience. After signing up, users can create profiles, write reviews, and communicate with hosts or guests. The platform also offers filters to curate stays based on location, type of property, and price range.
 
 Things you may want to cover:
 
