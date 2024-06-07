@@ -10,14 +10,14 @@ Airbed & Coffee is a full-stack clone of the Airbnb website, replicating its fea
 ## Technologies Used
 This project incorporates a variety of technologies to facilitate a full-stack web application, including:
 
-- Ruby: Version 3.1.1
-- Rails: Version 7.1.3.3
-- Node: Version 18.20.2
-- npm: Version 10.5.0
-- PostgreSQL: Used for the database
-- React and Redux: For dynamic frontend development
-- TailwindCSS: For responsive and modern styling
-- AWS S3: Utilized for image storage
+- **Ruby**: Version 3.1.1
+- **Rails**: Version 7.1.3.3
+- **Node**: Version 18.20.2
+- **npm**: Version 10.5.0
+- **PostgreSQL**: Used for the database
+- **React and Redux**: For dynamic frontend development
+- **TailwindCSS**: For responsive and modern styling
+- **AWS S3**: Utilized for image storage
 
 # Features
 
