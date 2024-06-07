@@ -53,7 +53,6 @@ const ListingCard = ({ listing }) => {
                         />
                     ) : (
                         <div className="object-cover h-full w-full bg-gray-200">
-                            {/* Fallback content in case there's no image */}
                         </div>
                     )}
                 </div>

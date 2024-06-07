@@ -34,17 +34,16 @@ const RegisterModal = () => {
           setErrors([]);
           return dispatch(sessionActions.signup({ firstName, lastName, email, password }))
             .catch(async (res) => {
-            let data;
-            try {
-              // .clone() essentially allows you to read the response body twice
-              data = await res.clone().json();
-            } catch {
-              data = await res.text(); // Will hit this case if, e.g., server is down
-            }
-            if (data?.errors) setErrors(data.errors);
-            else if (data) setErrors([data]);
-            else setErrors([res.statusText]);
-          });
+                let data;
+                try {
+                    data = await res.clone().json();
+                } catch {
+                    data = await res.text();
+                }
+                if (data?.errors) setErrors(data.errors);
+                else if (data) setErrors([data]);
+                else setErrors([res.statusText]);
+            });
         }
     };
 
@@ -242,8 +241,8 @@ const RegisterModal = () => {
                     </label>
                 </div>
                 <ul className='text-red-600 mt-1'>
-                    {errors.map(error => 
-                        <li key={error} className='text-xs font-semibold flex gap-2 items-center'>
+                    {errors.map((error, index) => 
+                        <li key={index} className='text-xs font-semibold flex gap-2 items-center'>
                             <FaCircleXmark /> 
                             {error}
                         </li>
