@@ -61,7 +61,6 @@ This project incorporates a variety of technologies to facilitate a full-stack w
     ```
 ### Listings
 - Users can browse through various property listings with detailed descriptions and images.
-<<<<<<< HEAD
     - The layout and style of the listing card adjust responsively at various screen widths, ensuring optimal display across different devices.
     ```javascript
     const ListingCard = ({ listing }) => {
@@ -142,8 +141,6 @@ This project incorporates a variety of technologies to facilitate a full-stack w
         )
     }
     ```
-=======
->>>>>>> parent of 51697e2 (Update readme)
   
 ### Reservations
 - Users can book reservations for their desired stay:
