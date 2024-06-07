@@ -24,7 +24,7 @@ This project incorporates a variety of technologies to facilitate a full-stack w
 ### User Authentication
 ![](https://github.com/edison4354/airbed-n-coffee/blob/main/public/sample.gif)
 - Secure sign-up, login, and logout functionality.
-- Session-based Authentication: Utilizes secure session cookies to maintain user state across web requests, enhancing both security and user experience.
+- Session-based Authentication: Utilizes secure session cookies to maintain user state across web requests.
 - Error Handling:
   - After initiating the signup process, the function catches any errors from the dispatch call. It first attempts to parse the server's response as JSON; if this fails, it falls back to retrieving plain text. If the JSON contains errors, these are set into the state; otherwise, it uses either the plain text or the server's status text as the error message
  
