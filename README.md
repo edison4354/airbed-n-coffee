@@ -1,4 +1,4 @@
-# WELCOME TO AIRBED AND COFFEE
+# WELCOME TO AIRBED & COFFEE
 
 Check out [live site!](https://airbed-n-coffee.onrender.com/)
 
