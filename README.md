@@ -2,7 +2,23 @@
 
 Check out [live site!](https://airbed-n-coffee.onrender.com/)
 
-Airbed&Coffee is a clone of Airbnb - an online marketplace that connects people who want to rent out their homes or host experiences with those looking for accommodations or unique activities. A Airbnb user can create listings for their property/experience or book a stay/experience. After signing up, users can create profiles, write reviews, and communicate with hosts or guests. The platform also offers filters to curate stays based on location, type of property, and price range.
+## Project Overview
+Airbed & Coffee is a full-stack clone of the Airbnb website, replicating its features and functionality - an online marketplace that connects people who want to rent out their homes with those looking for accommodations. After signing up, Airbed & Coffee users can browse through a listing page with preloaded listings and book a reservation for their desired stay directly through the platform.
+
+Technologies implemented in this project:
+
+- Ruby: Version 3.1.1
+- Rails: Version 7.1.3.3
+- PostgreSQL: Used for the database
+- React and Redux: Employed for frontend development
+- TailwindCSS: Applied for styling
+- AWS S3: Utilized for image storage
+
+![alt text]('./public/homepage.png)
+
+
+# Features
+
 
 Things you may want to cover:
 
