@@ -24,8 +24,41 @@ This project incorporates a variety of technologies to facilitate a full-stack w
 ### User Authentication
 ![](https://github.com/edison4354/airbed-n-coffee/blob/main/public/sample.gif)
 - Secure sign-up, login, and logout functionality.
-
-
+- Session-based Authentication: Utilizes secure session cookies to maintain user state across web requests.
+- Error Handling:
+  - After initiating the signup process, the function catches any errors from the dispatch call. It first tries to parse the server's response as JSON, if this fails it falls back to retrieving plain text. If the JSON contains errors, these are set into the state. Otherwise, it uses either the plain text or the server's status text as the error message
+ 
+    ```javascript
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (password) {
+          setErrors([]);
+          return dispatch(sessionActions.signup({ firstName, lastName, email, password }))
+            .catch(async (res) => {
+                let data;
+                try {
+                    data = await res.clone().json();
+                } catch {
+                    data = await res.text();
+                }
+                if (data?.errors) setErrors(data.errors);
+                else if (data) setErrors([data]);
+                else setErrors([res.statusText]);
+            });
+        }
+    };
+    ```
+  - Errors are displayed to the user using a list that visually represents each error with an icon, enhancing the clarity of the feedback
+    ```javascript
+    <ul className='text-red-600 mt-1'>
+        {errors.map((error, index) => 
+            <li key={index} className='text-xs font-semibold flex gap-2 items-center'>
+                <FaCircleXmark /> 
+                {error}
+            </li>
+        )}
+    </ul>
+    ```
 ### Listings
 - Users can browse through various property listings with detailed descriptions and images.
   
