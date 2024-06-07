@@ -14,7 +14,7 @@ Technologies implemented in this project:
 - TailwindCSS: Applied for styling
 - AWS S3: Utilized for image storage
 
-![alt text]('./public/homepage.png')
+![alt text](https://github.com/edison4354/airbed-n-coffee/blob/main/public/homepage.png?raw=true)
 
 
 # Features
