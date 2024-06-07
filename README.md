@@ -5,7 +5,7 @@ Check out [live site!](https://airbed-n-coffee.onrender.com/)
 ## Project Overview
 Airbed & Coffee is a full-stack clone of the Airbnb website, replicating its features and functionality - an online marketplace that connects people who want to rent out their homes with those looking for accommodations. After signing up, Airbed & Coffee users can browse through a listing page with preloaded listings and book a reservation for their desired stay directly through the platform.
 
-![alt text]('./public/homepage.png')
+![alt text](https://github.com/edison4354/airbed-n-coffee/blob/main/public/homepage.png?raw=true)
 
 ## Technologies Used
 This project incorporates a variety of technologies to facilitate a full-stack web application, including:
