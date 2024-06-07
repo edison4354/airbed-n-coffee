@@ -1,6 +1,6 @@
 # WELCOME TO AIRBED AND COFFEE
 
-Check out (live site!)[https://airbed-n-coffee.onrender.com/]
+Check out [live site!](https://airbed-n-coffee.onrender.com/)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
