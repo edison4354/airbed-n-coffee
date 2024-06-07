@@ -63,7 +63,8 @@ This project incorporates a variety of technologies to facilitate a full-stack w
 - Users can browse through various property listings with detailed descriptions and images.
   
 ### Reservations
-- Users can book reservations for their desired stay directly through the platform.
+- Users can book reservations for their desired stay
+  - Full CRUD capabilities for managing reservations: allows users to view, create, update, and delete reservations, ensuring actions like creating or modifying a reservation require the user to be logged in. The controller includes error handling to provide feedback if an action fails, such as during creation or update due to missing or invalid data.
   ```ruby
   class Api::ReservationsController < ApplicationController
       before_action :require_logged_in, only: [:create, :update, :destroy]
