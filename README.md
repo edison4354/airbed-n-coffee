@@ -27,24 +27,24 @@ This project incorporates a variety of technologies to facilitate a full-stack w
 - Session-based Authentication: Utilizes secure session cookies to maintain user state across web requests, enhancing both security and user experience.
 - Error Handling: 
 ```javascript
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (password) {
-          setErrors([]);
-          return dispatch(sessionActions.signup({ firstName, lastName, email, password }))
-            .catch(async (res) => {
-                let data;
-                try {
-                    data = await res.clone().json();
-                } catch {
-                    data = await res.text();
-                }
-                if (data?.errors) setErrors(data.errors);
-                else if (data) setErrors([data]);
-                else setErrors([res.statusText]);
-            });
-        }
-    };
+const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password) {
+      setErrors([]);
+      return dispatch(sessionActions.signup({ firstName, lastName, email, password }))
+        .catch(async (res) => {
+            let data;
+            try {
+                data = await res.clone().json();
+            } catch {
+                data = await res.text();
+            }
+            if (data?.errors) setErrors(data.errors);
+            else if (data) setErrors([data]);
+            else setErrors([res.statusText]);
+        });
+    }
+};
 ```
 
 
