@@ -22,9 +22,10 @@ This project incorporates a variety of technologies to facilitate a full-stack w
 # Features
 
 ### User Authentication
+![](https://github.com/edison4354/airbed-n-coffee/blob/main/public/sample.gif)
 - Secure sign-up, login, and logout functionality.
 
-  
+
 ### Listings
 - Users can browse through various property listings with detailed descriptions and images.
   
