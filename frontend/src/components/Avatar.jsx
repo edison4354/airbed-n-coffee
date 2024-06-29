@@ -5,7 +5,7 @@ const Avatar = () => {
             height="30"
             width="30"
             alt="Avatar"
-            src="../../public/profile.png"
+            src="../profile.png"
         />
     )
 }

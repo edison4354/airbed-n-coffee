@@ -66,7 +66,7 @@ const ListingDetail = () => {
                         </div>
                         <hr className='w-[653px]'/>
                         <div className='flex pb-7 pt-7'>
-                            <img src="./../../../public/profile.png" alt="Profile Image" className=" rounded-full w-10 h-10"/>
+                            <img src="../profile.png" alt="Profile Image" className=" rounded-full w-10 h-10"/>
                             <div className='pl-3'>
                                 <p className="text-base font-medium">Hosted by {listing.host.firstName} {listing.host.lastName}</p>
                                 <p className="text-sm font-light text-slate-500">{Math.floor(Math.random() * 10)} years hosting</p>
@@ -123,7 +123,7 @@ const ListingDetail = () => {
                             <div key={index}>
                                 <div>
                                     <div className='flex gap-3'>
-                                        <img src="./../../../public/profile.png" alt="Profile Image" className=" rounded-full w-12 h-12"/>
+                                        <img src="../profile.png" alt="Profile Image" className=" rounded-full w-12 h-12"/>
                                         <div>
                                             <p className="text-base font-medium">Margarita</p>
                                             <p className="text-sm font-light text-slate-500">Napa, California</p>
