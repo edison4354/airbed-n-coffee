@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import DatePicker from "./DatePicker";
 import * as reservationActions from '../../store/reservation';
+import { openLoginModal } from '../../store/modal';
 
 const ReservationForm = () => {
     const dispatch = useDispatch()
     const [dateRange, setDateRange] = useState([new Date(), new Date()]);
     const [nights, setNights] = useState(0);
     const [numGuests, setNumGuests] = useState(0);
+    const [loggedIn, setLoggedIn] = useState(false)
+
     const listing = useSelector((state) => state.listing);
+    const sessionUser = useSelector(state => state.session.user);
+
     const listingId = listing.id
     const checkIn = dateRange[0]
     const checkOut = dateRange[1]
+
+    useEffect(() => {
+        setLoggedIn(!!sessionUser);
+    }, [sessionUser]);
 
     const handleChange = (e) => {
         setNumGuests(e.target.value);
@@ -40,7 +49,11 @@ const ReservationForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        return dispatch(reservationActions.createNewReservation(reservation))
+        if (loggedIn) {
+            return dispatch(reservationActions.createNewReservation(reservation))
+        } else {
+            return dispatch(openLoginModal());
+        }
     };
 
     return (
