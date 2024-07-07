@@ -23,6 +23,7 @@ const LoginModal = () => {
         }
     }, [dispatch, sessionUser]);
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
@@ -169,6 +170,9 @@ const LoginModal = () => {
                     Log In
                 </button>
             </form>
+            <div className='flex justify-center items-center'>
+                <p>Log in as Demo User</p>
+            </div>
         </div>
     )
 

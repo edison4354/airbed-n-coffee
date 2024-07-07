@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import DatePicker from "./DatePicker";
 import * as reservationActions from '../../store/reservation';
-import { openLoginModal } from '../../store/modal';
+import { openLoginModal, openBookedModal } from '../../store/modal';
 
 const ReservationForm = () => {
     const dispatch = useDispatch()
@@ -46,13 +46,18 @@ const ReservationForm = () => {
         numGuests
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (loggedIn) {
-            return dispatch(reservationActions.createNewReservation(reservation))
-        } else {
-            return dispatch(openLoginModal());
+        
+        try {
+            if (loggedIn) {
+                await dispatch(reservationActions.createNewReservation(reservation))
+                dispatch(openBookedModal());
+            } else {
+                dispatch(openLoginModal());
+            }
+        } catch (error) {
+            console.error("Failed to create a new reservation:", error);
         }
     };
 

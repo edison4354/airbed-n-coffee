@@ -6,6 +6,7 @@ const UPDATE_RESERVATION = 'UPDATE_RESERVATION';
 const DELETE_RESERVATION = 'DELETE_RESERVATION';
 const RECEIVE_RESERVATION = 'RECEIVE_RESERVATION';
 const RECEIVE_RESERVATIONS = 'RECEIVE_RESERVATIONS';
+const RECEIVE_USER_RESERVATIONS = 'RECEIVE_USER_RESERVATIONS';
 
 // Action Creators
 const createReservation = (reservation) => ({
@@ -33,6 +34,11 @@ const receiveReservations = (reservations) => ({
   payload: reservations,
 });
 
+const receiveUserReservations = (reservations) => ({
+  type: RECEIVE_USER_RESERVATIONS,
+  payload: reservations,
+})
+
 // Thunks Action Creators
 export const fetchReservation = (reservationId) => async (dispatch) => {
   const res = await csrfFetch(`/api/reservations/${reservationId}`);
@@ -40,10 +46,16 @@ export const fetchReservation = (reservationId) => async (dispatch) => {
   dispatch(receiveReservation(data));
 }
 
-export const fetchAllReservations = () => async (dispatch) => {
-  const res = await csrfFetch('/api/reservations');
+export const fetchAllReservations = (listingId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/listings/${listingId}/reservations`);
   const data = await res.json();
   dispatch(receiveReservations(data));
+}
+
+export const fetchUserReservations = () => async (dispatch) => {
+  const res = await csrfFetch('/api/reservations/user');
+  const data = await res.json();
+  dispatch(receiveUserReservations(data));
 }
 
 export const createNewReservation = (reservation) => async (dispatch) => {
@@ -91,6 +103,8 @@ const reservationReducer = (state = {}, action) => {
         case RECEIVE_RESERVATION:
             return { ...nextState, [action.payload.id]: action.payload };
         case RECEIVE_RESERVATIONS:
+            return action.payload;
+        case RECEIVE_USER_RESERVATIONS:
             return action.payload;
         default:
             return state;

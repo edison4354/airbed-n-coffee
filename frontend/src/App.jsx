@@ -7,6 +7,7 @@ import Navbar from './components/navbar/Navbar';
 import * as sessionActions from './store/session';
 import RegisterModal from './components/modals/RegisterModal';
 import LoginModal from './components/modals/LoginModal';
+import BookedModal from './components/modals/BookedModal';
 import ListingsGrid from './components/listings/ListingsGrid';
 import ListingDetail from './components/listings/ListingDetail';
 import ReservationForm from './components/reservations/DatePicker';
@@ -25,6 +26,7 @@ function Layout() {
     <>
         <RegisterModal />
         <LoginModal />
+        <BookedModal />
         <Navbar />
         {isLoaded && <Outlet />}
     </>

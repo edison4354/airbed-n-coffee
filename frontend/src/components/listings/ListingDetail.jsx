@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchListing } from "../../store/listing";
+import { fetchAllReservations } from '../../store/reservation';
 import { IoIosStar } from 'react-icons/io';
 import { FaWifi } from "react-icons/fa";
 import { MdOutlinePool } from "react-icons/md";
@@ -20,7 +21,8 @@ const ListingDetail = () => {
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
-        dispatch(fetchListing(id)).then(() => setLoading(false));              
+        dispatch(fetchListing(id)).then(() => setLoading(false));
+        dispatch(fetchAllReservations(id))          
     }, [dispatch, id]);
 
     if (loading) {
@@ -97,12 +99,12 @@ const ListingDetail = () => {
                                 ))}
                             </div>
                         </div>
-                        <hr className='w-[653px]'/>
+                        {/*<hr className='w-[653px]'/>
                         <div className='pb-7 pt-7 max-w-[653px]'>
                             <h2 className="text-[22px] font-medium">Calendar</h2>
                             <div className='border w-full h-[300px] mt-8 mb-8 rounded-lg'>
                             </div>
-                        </div>
+                        </div>*/}
                     </div>
                     <div className='pb-8 pt-8'>
                         <div className='w-[372px] h-[606px]'>
@@ -110,7 +112,7 @@ const ListingDetail = () => {
                         </div>
                     </div>
                 </div>
-                <hr className='w-full'/>
+                {/*<hr className='w-full'/>
                 <div>
                     <h2 className="flex items-center gap-2 text-[22px] font-medium pb-8 pt-8"> <IoIosStar /> 4.98 · 186 reviews</h2>
                     <div className='border w-full h-[160px] mb-8 rounded-lg'>
@@ -143,7 +145,7 @@ const ListingDetail = () => {
                             Map
                         </div>
                     </div>
-                </div>
+                </div>*/}
             </div>
         </div>
     );

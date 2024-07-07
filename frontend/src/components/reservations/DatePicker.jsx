@@ -19,6 +19,7 @@ const DatePicker = ({ value, onChange, handleDateChange}) => {
                 <DateRangePicker
                     onChange={handleChange}
                     value={value}
+                    minDate={new Date()}
                     className='w-full text-[14px] font-light select-none'
                 />
             </div>
