@@ -125,3 +125,8 @@
 input:focus {
     outline: none;
 }
+
+.react-calendar__navigation button:disabled {
+    background-color: white;
+    color: #e5e7eb;
+}
