@@ -11,6 +11,8 @@ import BookedModal from './components/modals/BookedModal';
 import ListingsGrid from './components/listings/ListingsGrid';
 import ListingDetail from './components/listings/ListingDetail';
 import ReservationForm from './components/reservations/DatePicker';
+import TripPage from './components/trips/TripPage';
+import TripDetailPage from './components/trips/TripDetailPage';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -45,20 +47,20 @@ const router = createBrowserRouter([
                 </div>
         },
         {
-            path: 'login',
-            element: <LoginForm />
-        },
-        {
-            path: 'signup',
-            element: <SignupForm />
-        },
-        {
             path: '/listings/:id',
             element: <ListingDetail />
         },
         {
             path: '/reservations',
             element: <ReservationForm />
+        },
+        {
+            path: '/trips',
+            element: <TripPage />
+        },
+        {
+            path: '/trips/:id',
+            element: <TripDetailPage />
         }
     ]
   }
