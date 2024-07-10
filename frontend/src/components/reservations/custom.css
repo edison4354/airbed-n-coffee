@@ -125,3 +125,17 @@
 input:focus {
     outline: none;
 }
+
+.react-calendar__navigation button:disabled {
+    background-color: white;
+    color: #e5e7eb;
+}
+
+div[style*="position: absolute"][style*="pointer-events: none"][style*="color: rgba(130, 130, 130, 0.62)"][style*="z-index: 100000"][style*="bottom: 50%"][style*="font-size: 24px"] {
+    display: none;
+}
+
+.MuiStack-root {
+    padding-left: 5px;
+    padding-right: 5px;
+}

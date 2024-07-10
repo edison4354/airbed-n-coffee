@@ -1,29 +1,49 @@
-import DateRangePicker from '@wojtekmaj/react-daterange-picker';
-import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css';
-import 'react-calendar/dist/Calendar.css';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers-pro/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { useSelector } from 'react-redux';
+import { useMemo } from 'react';
 import './custom.css'
 
-const DatePicker = ({ value, onChange, handleDateChange}) => {
+const DatePicker = ({value, onChange, handleDateChange}) => {
+    const reservations = useSelector((state) => state.listing.reservations);
+
+    // Process reservations to get all dates that should be disabled
+    const disabledDates = useMemo(() => {
+        const dates = new Set();
+        Object.values(reservations).forEach((reservation) => {
+            const currentDate = new Date(reservation.checkIn);
+            const endDate = new Date(reservation.checkOut);
+
+            while (currentDate <= endDate) {
+                dates.add(currentDate.toISOString().split('T')[0]);
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+        });
+        return dates;
+    }, [reservations]);
+
     const handleChange = (newValue) => {
-        onChange(newValue);
-        handleDateChange(newValue);
-     };
+        handleDateChange(newValue)
+        onChange(newValue)
+    }
+
+    const shouldDisableDate = (date) => {
+        return disabledDates.has(date.toISOString().split('T')[0]);
+    };
 
     return (
-        <div className="p-1">
-            <div className='calendar-container'>
-                <div className='calendar-header'>
-                    <p className='w-1/2 pl-3 -mb-1'>CHECK-IN</p>
-                    <p className='w-1/2 pl-3 -mb-1'>CHECKOUT</p>
-                </div>
-                <DateRangePicker
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={['DateRangePicker']}>
+                <DateRangePicker 
+                    value={new Date(value)}
                     onChange={handleChange}
-                    value={value}
-                    minDate={new Date()}
-                    className='w-full text-[14px] font-light select-none'
+                    disablePast={true}
+                    shouldDisableDate={shouldDisableDate}
                 />
-            </div>
-        </div>
+            </DemoContainer>
+        </LocalizationProvider>
     );
 };
 

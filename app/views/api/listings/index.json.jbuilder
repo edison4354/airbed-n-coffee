@@ -6,6 +6,6 @@ json.array! @listings do |listing|
         json.first_name listing.host.first_name
         json.last_name listing.host.last_name
     end
-
+    
     json.photoUrls listing.photos.attached? ? listing.photos.map { |photo| photo.url } : nil
 end

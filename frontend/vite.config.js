@@ -27,6 +27,12 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: '../public',
     emptyOutDir: true
+  },
+
+  resolve: {
+    alias: {
+      'date-fns': 'date-fns/esm'
+    }
   }
   
 }));
