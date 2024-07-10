@@ -20,7 +20,6 @@ const receiveListings = listings => {
 export const fetchListing = (listingId) => async dispatch => {
     const res = await csrfFetch(`/api/listings/${listingId}`);
     const data = await res.json();
-    console.log(data.listing.reservations)
     if (data && data.listing.reservations) {
         data.listing.reservations = data.listing.reservations.reduce((acc, reservation) => {
             acc[reservation.id] = reservation;
