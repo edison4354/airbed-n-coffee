@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet, createBrowserRouter, RouterProvider } from 'react-router-dom';
-import LoginForm from './components/session/LoginForm';
-import SignupForm from './components/session/SignupForm';
 import Navbar from './components/navbar/Navbar';
 import * as sessionActions from './store/session';
 import RegisterModal from './components/modals/RegisterModal';

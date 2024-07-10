@@ -49,8 +49,8 @@ export const fetchReservation = (reservationId) => async (dispatch) => {
 export const fetchAllReservations = (listingId) => async (dispatch) => {
   const res = await csrfFetch('/api/reservations');
   const data = await res.json();
-  await console.log(data)
-  dispatch(receiveReservations(data));
+  const listingData = await data.filter(reservation => reservation.listingId === listingId)
+  dispatch(receiveReservations(listingData));
 }
 
 export const fetchUserReservations = (userId) => async (dispatch) => {
