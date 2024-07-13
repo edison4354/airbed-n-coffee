@@ -5,9 +5,11 @@ import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 import { openLoginModal, openRegisterModal } from '../../store/modal';
 import * as sessionActions from '../../store/session';
+import { useNavigate } from 'react-router-dom';
 
 const UserMenu = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false)
     const [loggedIn, setLoggedIn] = useState(false)
 
@@ -32,9 +34,15 @@ const UserMenu = () => {
     }
 
     const handleLogout = () => {
+        navigate('/');
         dispatch(sessionActions.logout());
     };
-    
+
+    const handleTrips = () => {
+        setIsOpen(false);
+        navigate('/trips');
+    }
+
     return (
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
@@ -78,7 +86,7 @@ const UserMenu = () => {
                 >
                     <div className='flex flex-col cursor-pointer'>
                         {!loggedIn ? (
-                            <>
+                            <div>
                                 <MenuItem
                                     onClick={onLoginOpen}
                                     label="Login"
@@ -87,12 +95,18 @@ const UserMenu = () => {
                                     onClick={onRegisterOpen}
                                     label="Sign up"
                                 />
-                            </>
+                            </div>
                         ) : (
-                            <MenuItem
-                                label="Logout"
-                                onClick={handleLogout}
-                            />
+                            <div>
+                                <MenuItem 
+                                    onClick={handleTrips}
+                                    label="Trips"
+                                />
+                                <MenuItem
+                                    onClick={handleLogout}
+                                    label="Logout"
+                                />
+                            </div>
                         )}
                     </div>
                 </div>

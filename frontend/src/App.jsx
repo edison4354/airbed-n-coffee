@@ -11,10 +11,12 @@ import ListingDetail from './components/listings/ListingDetail';
 import ReservationForm from './components/reservations/DatePicker';
 import TripPage from './components/trips/TripPage';
 import TripDetailPage from './components/trips/TripDetailPage';
+import { useSelector } from 'react-redux'
 
 function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const loggedIn = useSelector(state => !!state.session.user);
 
   useEffect(() => {
     dispatch(sessionActions.restoreSession()).then(() => {

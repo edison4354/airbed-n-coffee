@@ -6,7 +6,7 @@ const Modal = ({
 	onClose,
 	title,
 	body,
-	disabled,
+	disabled
 }) => {
 	const [showModal, setShowModal] = useState(isOpen);
 
@@ -99,19 +99,21 @@ const Modal = ({
                                     border-b-[1px]
 								"
 							>
-								<button
-									onClick={handleClose}
-									className="
-										p-1
-										border-0
-										hover:opacity-70
-										transition
-										absolute
-										left-9
-									"
-								>
-									<IoMdClose size={18}/>
-								</button>
+								{!disabled && (
+									<button
+										onClick={handleClose}
+										className="
+											p-1
+											border-0
+											hover:opacity-70
+											transition
+											absolute
+											left-9
+										"
+									>
+										<IoMdClose size={18}/>
+									</button>
+								)}
 								<div className="text-lg font-semibold">
 									{title}
 								</div>
