@@ -1,6 +1,8 @@
 import { statesObject } from '../states';
+import { useNavigate } from 'react-router-dom';
 
 const TripCard = ({ reservation }) => {
+    const navigate = useNavigate()
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -10,8 +12,31 @@ const TripCard = ({ reservation }) => {
         });
     };
 
+    const handleClick = () => {
+        navigate(`/trips/${reservation.id}`);
+    }
+
     return (
-        <div className="flex w-[900px] border border-slate-100 mt-4 mb-5 rounded-2xl shadow-lg">
+        <div 
+            onClick={handleClick}
+            className="
+                flex 
+                w-[900px] 
+                border 
+                border-slate-100 
+                mt-4 
+                mb-5 
+                rounded-2xl 
+                shadow-lg
+                cursor-pointer 
+                transition 
+                duration-300 
+                transform 
+                hover:shadow-xl 
+                hover:scale-105 
+                active:scale-95
+            "
+        >
             <div className="p-6 flex-1">
                 <div className="mb-6">
                     <h1 className="text-2xl font-medium pb-2">{reservation.listing.title}</h1>
