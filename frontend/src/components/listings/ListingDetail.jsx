@@ -26,7 +26,11 @@ const ListingDetail = () => {
     }, [dispatch, id]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex justify-center pt-24">
+                <h1>Loading...</h1>
+            </div>
+        )
     }
 
     const city = listing.address.split(',')[1]
