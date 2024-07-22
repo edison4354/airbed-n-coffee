@@ -72,7 +72,7 @@ const ReservationForm = () => {
             <DatePicker value={dateRange} onChange={setDateRange} handleDateChange={handleDateChange}/>
             <div className="w-[322px] h-[61px] border rounded-lg border-[#B0B0B0] mt-3 pl-3 flex flex-col justify-center">
                 <label className="text-[10px] font-bold" htmlFor="guest">GUESTS</label>
-                <input         
+                <input
                     type="number"
                     value={numGuests}
                     onChange={handleChange}

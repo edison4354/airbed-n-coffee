@@ -1,5 +1,5 @@
 import { AiOutlineMenu } from 'react-icons/ai'
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
@@ -12,24 +12,37 @@ const UserMenu = () => {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false)
     const [loggedIn, setLoggedIn] = useState(false)
+    const menuRef = useRef(null);
 
     const sessionUser = useSelector(state => state.session.user);
     
     useEffect(() => {
         setLoggedIn(!!sessionUser);
         setIsOpen(false);
-    }, [sessionUser]);
-    
+
+        const handleClickOutside = (e) => {
+            if (menuRef.current && !menuRef.current.contains(e.target)) {
+                setIsOpen(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+
+    }, [sessionUser, menuRef]);
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, []);
 
     const onLoginOpen = () => {
+        setIsOpen(false)
         dispatch(openLoginModal());
     }
 
     const onRegisterOpen = () => {
+        setIsOpen(false)
         dispatch(openRegisterModal());
     }
 
@@ -44,7 +57,7 @@ const UserMenu = () => {
     }
 
     return (
-        <div className="relative">
+        <div className="relative" ref={menuRef}>
             <div className="flex flex-row items-center gap-3">
                 <div
                     onClick={toggleOpen}

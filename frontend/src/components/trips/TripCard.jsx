@@ -13,7 +13,7 @@ const TripCard = ({ reservation }) => {
     };
 
     const handleClick = () => {
-        navigate(`/trips/${reservation.id}`);
+        navigate(`/trips/${reservation.id}?listingId=${reservation.listingId}`);
     }
 
     return (

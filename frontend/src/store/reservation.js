@@ -48,9 +48,15 @@ export const fetchReservation = (reservationId) => async (dispatch) => {
 
 export const fetchAllReservations = (listingId) => async (dispatch) => {
   const res = await csrfFetch('/api/reservations');
-  const data = await res.json();
+  const data = await res.json()
+  console.log(data)
   const listingData = await data.filter(reservation => reservation.listingId === listingId)
-  dispatch(receiveReservations(listingData));
+  const normalizedData = listingData.reduce((acc, reservation) => {
+    acc[reservation.id] = reservation;
+    return acc
+  }, {});
+
+  dispatch(receiveReservations(normalizedData));
 }
 
 export const fetchUserReservations = (userId) => async (dispatch) => {
@@ -96,16 +102,28 @@ const reservationReducer = (state = {}, action) => {
     
     switch (action.type) {
         case CREATE_RESERVATION:
-            return { ...nextState, [action.payload.id]: action.payload };
+            return { 
+              ...nextState, 
+              [action.payload.id]: action.payload 
+            };
         case UPDATE_RESERVATION:
-            return { ...nextState, [action.payload.id]: action.payload };
+            return { 
+              ...nextState, 
+              [action.payload.id]: action.payload 
+            };
         case DELETE_RESERVATION:
             delete nextState[action.payload];
             return nextState;
         case RECEIVE_RESERVATION:
-            return { ...nextState, [action.payload.id]: action.payload };
+            return { 
+              ...nextState, 
+              [action.payload.id]: action.payload 
+            };
         case RECEIVE_RESERVATIONS:
-            return action.payload;
+            return {
+              ...nextState,
+              ...action.payload
+            };
         case RECEIVE_USER_RESERVATIONS:
             return action.payload;
         default:

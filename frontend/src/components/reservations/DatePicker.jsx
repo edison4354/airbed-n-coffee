@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useMemo } from 'react';
 import './custom.css'
 
-const DatePicker = ({value, onChange, handleDateChange}) => {
+const DatePicker = ({value, onChange, handleDateChange, reservation}) => {
     const reservations = useSelector((state) => state.listing.reservations);
 
     // Process reservations to get all dates that should be disabled
