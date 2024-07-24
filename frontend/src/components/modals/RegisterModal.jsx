@@ -47,6 +47,10 @@ const RegisterModal = () => {
         }
     };
 
+    const hanndleDemoUserLogin = () => {
+        dispatch(sessionActions.login({ email: "demo@user.io", password: "password" }))
+    }
+
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <Heading
@@ -271,6 +275,12 @@ const RegisterModal = () => {
                     Agree and Continue 
                 </button>
             </form>
+            <button 
+                className='flex justify-center items-center bg-gray-400 text-white px-4 py-3.5 rounded-lg font-medium hover:opacity-80 w-full'
+                onClick={hanndleDemoUserLogin}
+            >
+                <p>Log in as Demo User</p>
+            </button>
         </div>
     )
 

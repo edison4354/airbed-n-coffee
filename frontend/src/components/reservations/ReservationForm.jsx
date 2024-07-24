@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import DatePicker from "./DatePicker";
-import * as reservationActions from '../../store/reservation';
+import { createNewReservation } from '../../store/reservation';
 import { openLoginModal, openBookedModal } from '../../store/modal';
 
 const ReservationForm = () => {
@@ -51,7 +51,7 @@ const ReservationForm = () => {
         
         try {
             if (loggedIn) {
-                await dispatch(reservationActions.createNewReservation(reservation))
+                await dispatch(createNewReservation(reservation))
                 dispatch(openBookedModal());
             } else {
                 dispatch(openLoginModal());
@@ -69,10 +69,12 @@ const ReservationForm = () => {
                     <p className="font-light text-base pl-1">night</p>
                 </h1>
             </div>
-            <DatePicker value={dateRange} onChange={setDateRange} handleDateChange={handleDateChange}/>
+            <div className="w-[322px]">
+                <DatePicker value={dateRange} onChange={setDateRange} handleDateChange={handleDateChange}/>
+            </div>
             <div className="w-[322px] h-[61px] border rounded-lg border-[#B0B0B0] mt-3 pl-3 flex flex-col justify-center">
                 <label className="text-[10px] font-bold" htmlFor="guest">GUESTS</label>
-                <input         
+                <input
                     type="number"
                     value={numGuests}
                     onChange={handleChange}

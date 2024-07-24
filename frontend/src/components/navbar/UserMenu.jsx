@@ -1,42 +1,63 @@
 import { AiOutlineMenu } from 'react-icons/ai'
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 import { openLoginModal, openRegisterModal } from '../../store/modal';
 import * as sessionActions from '../../store/session';
+import { useNavigate } from 'react-router-dom';
 
 const UserMenu = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false)
     const [loggedIn, setLoggedIn] = useState(false)
+    const menuRef = useRef(null);
 
     const sessionUser = useSelector(state => state.session.user);
     
     useEffect(() => {
         setLoggedIn(!!sessionUser);
         setIsOpen(false);
-    }, [sessionUser]);
-    
+
+        const handleClickOutside = (e) => {
+            if (menuRef.current && !menuRef.current.contains(e.target)) {
+                setIsOpen(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+
+    }, [sessionUser, menuRef]);
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, []);
 
     const onLoginOpen = () => {
+        setIsOpen(false)
         dispatch(openLoginModal());
     }
 
     const onRegisterOpen = () => {
+        setIsOpen(false)
         dispatch(openRegisterModal());
     }
 
     const handleLogout = () => {
+        navigate('/');
         dispatch(sessionActions.logout());
     };
-    
+
+    const handleTrips = () => {
+        setIsOpen(false);
+        navigate('/trips');
+    }
+
     return (
-        <div className="relative">
+        <div className="relative" ref={menuRef}>
             <div className="flex flex-row items-center gap-3">
                 <div
                     onClick={toggleOpen}
@@ -78,7 +99,7 @@ const UserMenu = () => {
                 >
                     <div className='flex flex-col cursor-pointer'>
                         {!loggedIn ? (
-                            <>
+                            <div>
                                 <MenuItem
                                     onClick={onLoginOpen}
                                     label="Login"
@@ -87,12 +108,18 @@ const UserMenu = () => {
                                     onClick={onRegisterOpen}
                                     label="Sign up"
                                 />
-                            </>
+                            </div>
                         ) : (
-                            <MenuItem
-                                label="Logout"
-                                onClick={handleLogout}
-                            />
+                            <div>
+                                <MenuItem 
+                                    onClick={handleTrips}
+                                    label="Trips"
+                                />
+                                <MenuItem
+                                    onClick={handleLogout}
+                                    label="Logout"
+                                />
+                            </div>
                         )}
                     </div>
                 </div>

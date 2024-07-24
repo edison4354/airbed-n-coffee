@@ -2,7 +2,7 @@ class Api::ReservationsController < ApplicationController
     before_action :require_logged_in, only: [:create, :update, :destroy]
 
     def index
-        @reservations = Reservation.includes(:listing).all
+        @reservations = Reservation.includes(listing: :host).all
         render :index
     end
 

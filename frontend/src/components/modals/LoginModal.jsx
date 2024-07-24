@@ -49,6 +49,10 @@ const LoginModal = () => {
           });
     };
 
+    const hanndleDemoUserLogin = () => {
+        dispatch(sessionActions.login({ email: "demo@user.io", password: "password" }))
+    }
+
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <form onSubmit={handleSubmit}>
@@ -170,9 +174,12 @@ const LoginModal = () => {
                     Log In
                 </button>
             </form>
-            <div className='flex justify-center items-center'>
+            <button 
+                className='flex justify-center items-center bg-gray-400 text-white px-4 py-3.5 rounded-lg font-medium hover:opacity-80 w-full'
+                onClick={hanndleDemoUserLogin}
+            >
                 <p>Log in as Demo User</p>
-            </div>
+            </button>
         </div>
     )
 

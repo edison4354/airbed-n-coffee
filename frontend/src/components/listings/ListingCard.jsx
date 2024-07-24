@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { IoIosStar } from "react-icons/io";
-import { statesObject } from './states';
+import { statesObject } from '../states';
 
 const ListingCard = ({ listing }) => {
     const navigate = useNavigate();

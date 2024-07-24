@@ -57,7 +57,7 @@ const router = createBrowserRouter([
             element: <TripPage />
         },
         {
-            path: '/trips/:id',
+            path: '/trips/:reservationId',
             element: <TripDetailPage />
         }
     ]
