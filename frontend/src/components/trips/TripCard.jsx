@@ -5,7 +5,7 @@ const TripCard = ({ reservation }) => {
     const navigate = useNavigate()
 
     const formatDate = (dateString) => {
-        const date = new Date(dateString);
+        const date = new Date(dateString  + 'T12:00:00Z');
         return date.toLocaleDateString('en-US', {
           month: 'short',
           day: 'numeric',

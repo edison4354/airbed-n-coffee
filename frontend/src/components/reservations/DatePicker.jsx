@@ -4,25 +4,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { useSelector } from 'react-redux';
 import { useMemo } from 'react';
+import dayjs from 'dayjs';
 import './custom.css'
 
-const DatePicker = ({value, onChange, handleDateChange, reservation}) => {
+const DatePicker = ({value, onChange, handleDateChange}) => {
     const reservations = useSelector((state) => state.listing.reservations);
-
-    // Process reservations to get all dates that should be disabled
-    const disabledDates = useMemo(() => {
-        const dates = new Set();
-        Object.values(reservations).forEach((reservation) => {
-            const currentDate = new Date(reservation.checkIn);
-            const endDate = new Date(reservation.checkOut);
-
-            while (currentDate <= endDate) {
-                dates.add(currentDate.toISOString().split('T')[0]);
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-        });
-        return dates;
-    }, [reservations]);
 
     const handleChange = (newValue) => {
         handleDateChange(newValue)
@@ -30,19 +16,34 @@ const DatePicker = ({value, onChange, handleDateChange, reservation}) => {
     }
 
     const shouldDisableDate = (date) => {
-        return disabledDates.has(date.toISOString().split('T')[0]);
+        return Object.values(reservations).some(reservation => {
+            const checkIn = dayjs(reservation.checkIn);
+            const checkOut = dayjs(reservation.checkOut);
+            return date.isBetween(checkIn, checkOut, null, '[]');
+        });
     };
+
+    
+    const dayjsValue = value ? [dayjs(value[0]), dayjs(value[1])] : [null, null];
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DateRangePicker']}>
-                <DateRangePicker 
-                    value={new Date(value)}
-                    onChange={handleChange}
-                    disablePast={true}
-                    shouldDisableDate={shouldDisableDate}
-                />
-            </DemoContainer>
+            <DateRangePicker 
+                value={dayjsValue}
+                onChange={handleChange}
+                disablePast={true}
+                shouldDisableDate={shouldDisableDate}
+                slotProps={{
+                    textField: {
+                        variant: "outlined",
+                        error: false, // Explicitly set to false to remove red border
+                    }
+                }}
+                localeText={{ 
+                    start: 'Check-in', 
+                    end: 'Check-out' 
+                }}
+            />
         </LocalizationProvider>
     );
 };

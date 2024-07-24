@@ -20,10 +20,10 @@ const TripGrid = () => {
     return (
         <div className="flex justify-center pt-24">
             <div className='flex flex-col w-[900px]'>
-                <h1 className="text-3xl font-medium">Trips</h1>
-                <h2 className="text-xl font-medium mt-16">Upcoming reservations</h2>
+                <h1 className="text-4xl font-semibold">Trips</h1>
+                <h2 className="text-xl font-medium mt-12">Upcoming reservations</h2>
                 <div className="mt-2">
-                    {reservations && reservations.length > 0 ? (reservations.map(reservation =>
+                    {reservations && reservations.length > 0 ? (reservations.slice().reverse().map(reservation =>
                         reservation ? <TripCard key={reservation.id} reservation={reservation} /> : null
                     )) : (<div>No reservations available</div>)}
                 </div>
