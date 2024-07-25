@@ -37,7 +37,7 @@ const TripCard = ({ reservation }) => {
                 active:scale-95
             "
         >
-            <div className="p-6 flex-1">
+            <div className="p-6 flex-1"> 
                 <div className="mb-6">
                     <h1 className="text-2xl font-medium pb-2">{reservation.listing.title}</h1>
                     <h2>Entire home hosted by {reservation.listing.host.firstName}</h2>

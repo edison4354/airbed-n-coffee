@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 import DatePicker from "../reservations/DatePicker";
 import { FaArrowCircleLeft } from "react-icons/fa";
 
-
 const TripDetailPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,7 +18,6 @@ const TripDetailPage = () => {
     const [ loading, setLoading ] = useState(true);
     const [ dateRange, setDateRange ] = useState([null, null]);
     const [ numGuests, setNumGuests ] = useState(0)
-    const [ nights, setNights ] = useState(0);
 
     const checkIn = dateRange[0]
     const checkOut = dateRange[1]
@@ -44,19 +42,6 @@ const TripDetailPage = () => {
         }
 
     }, [reservation]);
-
-    const calculateDaysLeft = (startDate, endDate) => {
-        const start = new Date(startDate);
-        const end = new Date(endDate);
-        const differenceInTime = end - start;
-        const differenceInDays = Math.ceil(differenceInTime / (1000 * 60 * 60 * 24));
-        return differenceInDays;
-    };
-
-    const handleDateChange = (newDateRange) => {
-        const days = calculateDaysLeft(newDateRange[0], newDateRange[1]);
-        setNights(days);
-    };
 
     const formatDate = (dateString) => {
         const date = new Date(dateString  + 'T12:00:00Z');
@@ -126,7 +111,7 @@ const TripDetailPage = () => {
                     <h2 id="reservation-details-heading" className="text-2xl font-medium mt-12">Reservation Details</h2>
                     <div>
                         <p className="mt-8 mb-4">Dates</p>
-                        <DatePicker value={dateRange} onChange={setDateRange} handleDateChange={handleDateChange}/>
+                        <DatePicker value={dateRange} onChange={setDateRange}/>
                     </div>
                     <div>
                         <p className="mt-6 mb-3">Guests</p>

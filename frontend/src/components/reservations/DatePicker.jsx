@@ -1,9 +1,7 @@
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers-pro/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { useSelector } from 'react-redux';
-import { useMemo } from 'react';
 import dayjs from 'dayjs';
 import './custom.css'
 
@@ -11,9 +9,11 @@ const DatePicker = ({value, onChange, handleDateChange}) => {
     const reservations = useSelector((state) => state.listing.reservations);
 
     const handleChange = (newValue) => {
-        handleDateChange(newValue)
-        onChange(newValue)
-    }
+        if (handleDateChange) {
+            handleDateChange(newValue);
+        }
+        onChange(newValue);
+    };
 
     const shouldDisableDate = (date) => {
         return Object.values(reservations).some(reservation => {
