@@ -14,7 +14,11 @@ const TripGrid = () => {
     }, [dispatch, sessionUserId]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex justify-center pt-24">
+                <p>Loading...</p>
+            </div>
+        );
     }
 
     return (
