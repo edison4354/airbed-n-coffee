@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { statesObject } from '../states';
 import { useNavigate } from 'react-router-dom';
 
-const TripCard = ({ reservation }) => {
+const TripCard = memo(({ reservation }) => {
     const navigate = useNavigate()
 
     const formatDate = (dateString) => {
@@ -60,6 +61,8 @@ const TripCard = ({ reservation }) => {
             </div>
         </div>
     )
-}
+})
+
+TripCard.displayName = "TripCard";
 
 export default TripCard;
