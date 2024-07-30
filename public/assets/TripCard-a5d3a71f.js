@@ -1,4 +1,4 @@
-import{r as d,u as a,j as s,s as r}from"./index-ab1c00c1.js";const c=d.memo(({reservation:e})=>{const i=a(),t=l=>new Date(l+"T12:00:00Z").toLocaleDateString("en-US",{month:"short",day:"numeric"}),n=()=>{i(`/trips/${e.id}?listingId=${e.listingId}`)};return s.jsxs("div",{onClick:n,className:`
+import{r as d,u as a,j as s,s as r}from"./index-638d0292.js";const c=d.memo(({reservation:e})=>{const i=a(),t=l=>new Date(l+"T12:00:00Z").toLocaleDateString("en-US",{month:"short",day:"numeric"}),n=()=>{i(`/trips/${e.id}?listingId=${e.listingId}`)};return s.jsxs("div",{onClick:n,className:`
                 flex 
                 w-[900px] 
                 border 
