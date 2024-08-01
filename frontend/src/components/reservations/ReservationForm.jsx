@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import DatePicker from "./DatePicker";
 import { createNewReservation } from '../../store/reservation';
 import { openLoginModal, openBookedModal } from '../../store/modal';
+import { FaCircleXmark } from "react-icons/fa6";
 
 const ReservationForm = () => {
     const dispatch = useDispatch()
@@ -10,6 +11,7 @@ const ReservationForm = () => {
     const [nights, setNights] = useState(0);
     const [numGuests, setNumGuests] = useState(0);
     const [loggedIn, setLoggedIn] = useState(false)
+    const [errors, setErrors] = useState({});
 
     const listing = useSelector((state) => state.listing);
     const sessionUser = useSelector(state => state.session.user);
@@ -48,6 +50,21 @@ const ReservationForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        let validationErrors = {};
+
+        if (numGuests <= 0) {
+            validationErrors.guests = "The number of guests should be greater than 0";
+        }
+
+        if (nights === 0) {
+            validationErrors.date = "Check-in & check-out dates cannot be the same day";
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
         
         try {
             if (loggedIn) {
@@ -82,6 +99,10 @@ const ReservationForm = () => {
                     className="font-light"
                 />
             </div>
+            <div className="w-[322px] pt-2">
+                {errors.date && <p className="flex items-center text-red-500 text-xs gap-1"><FaCircleXmark/> {errors.date}</p>}
+                {errors.guests && <p className="flex items-center text-red-500 text-xs gap-1"><FaCircleXmark/> {errors.guests}</p>}
+            </div>
             <button 
                 type="submit"
                 className='
@@ -99,7 +120,7 @@ const ReservationForm = () => {
                     text-md
                     font-semibold
                     border-2
-                    mt-6
+                    mt-5
                 '
             >
                 Reserve
