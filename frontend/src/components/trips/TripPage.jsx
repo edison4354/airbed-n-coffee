@@ -8,17 +8,19 @@ const TripCard = lazy(() => import("./TripCard"));
 const selectReservations = (state) => state.reservation;
 const selectReservationsArray = createSelector(
     [selectReservations],
-    (reservations) => Object.values(reservations)
+    (reservations) => reservations ? Object.values(reservations) : []
   );
 
 const TripGrid = () => {
     const dispatch = useDispatch()
     const sessionUserId = useSelector((state) => state.session.user.id);
     const reservations = useSelector(selectReservationsArray);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        dispatch(fetchUserReservations(sessionUserId)).then(() => setLoading(false));
+        if (sessionUserId) {
+            dispatch(fetchUserReservations(sessionUserId)).then(() => setLoading(false));
+        }
     }, [dispatch, sessionUserId]);
 
     if (loading) {
@@ -35,7 +37,7 @@ const TripGrid = () => {
                 <h1 className="text-4xl font-semibold">Trips</h1>
                 <h2 className="text-xl font-medium mt-12">Upcoming reservations</h2>
                 <div className="mt-2">
-                    {reservations && reservations.length > 0 ? (
+                    {reservations.length > 0 ? (
                         <Suspense fallback={<div>Loading trips...</div>}>
                             {reservations.map((reservation) =>
                                 reservation ? (
