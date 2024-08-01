@@ -2,12 +2,13 @@ class Api::ReservationsController < ApplicationController
     before_action :require_logged_in, only: [:create, :update, :destroy]
 
     def index
-        if  params[:userId]
-            @reservations = Reservation.includes(listing: :host).where(guest_id: params[:userId])
+        user_id = params[:user_id].to_i
+        if user_id
+            @reservations = Reservation.includes(listing: :host).where(guest_id: user_id)
         else 
             @reservations = Reservation.includes(listing: :host).all
         end
-        
+
         render :index
     end
 
