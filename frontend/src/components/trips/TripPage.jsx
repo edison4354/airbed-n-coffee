@@ -37,7 +37,7 @@ const TripGrid = () => {
                 <div className="mt-2">
                     {reservations && reservations.length > 0 ? (
                         <Suspense fallback={<div>Loading trips...</div>}>
-                            {reservations.slice().reverse().map((reservation) =>
+                            {reservations.map((reservation) =>
                                 reservation ? (
                                 <TripCard key={reservation.id} reservation={reservation} />
                                 ) : null
