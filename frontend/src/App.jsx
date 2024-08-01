@@ -39,10 +39,7 @@ const router = createBrowserRouter([
     children: [
         {
             path: '/',
-            element: 
-                <div className="pb-20 pt-24">
-                    <ListingsGrid />
-                </div>
+            element: <ListingsGrid />
         },
         {
             path: '/listings/:id',

@@ -62,7 +62,7 @@ const TripGrid = () => {
                 <h2 className="text-xl font-medium mt-12">Upcoming reservations</h2>
                 <div className="mt-2">
                     {reservations.length > 0 ? (
-                        reservations.map((reservation) =>
+                        reservations.slice().reverse().map((reservation) =>
                             reservation ? (
                                 <TripCard key={reservation.id} reservation={reservation} />
                             ) : null
