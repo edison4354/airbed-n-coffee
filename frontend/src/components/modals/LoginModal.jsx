@@ -18,7 +18,6 @@ const LoginModal = () => {
 
     useEffect(() => {
         if (sessionUser) {
-            console.log('User is logged in');
             dispatch(closeLoginModal())
         }
     }, [dispatch, sessionUser]);
