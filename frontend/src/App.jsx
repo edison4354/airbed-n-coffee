@@ -11,6 +11,7 @@ import ListingDetail from './components/listings/ListingDetail';
 import ReservationForm from './components/reservations/DatePicker';
 import TripPage from './components/trips/TripPage';
 import TripDetailPage from './components/trips/TripDetailPage';
+import Footer from './components/common/Footer';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function Layout() {
         <BookedModal />
         <Navbar />
         {isLoaded && <Outlet />}
+        <Footer />
     </>
   );
 }
