@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeRegisterModal } from '../../store/modal';
 import * as sessionActions from '../../store/session';
 import Modal from './Modal';
-import Heading from "../Heading";
+import Heading from "../common/Heading";
 // import { IconContext } from "react-icons";
 import { FaCircleXmark } from "react-icons/fa6";
 

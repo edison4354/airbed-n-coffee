@@ -1,7 +1,7 @@
 // import { NavLink } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 // import ProfileButton from './ProfileButton';
-import Container from '../Container';
+import Container from '../common/Container';
 import Logo from './Logo';
 import UserMenu from './UserMenu';
 

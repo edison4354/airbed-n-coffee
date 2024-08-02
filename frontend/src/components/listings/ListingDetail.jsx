@@ -9,7 +9,7 @@ import { MdOutlinePool } from "react-icons/md";
 import { IoSnow, IoCarOutline } from "react-icons/io5";
 import { TbToolsKitchen2 } from "react-icons/tb";
 import { PiBathtub } from "react-icons/pi";
-import { statesObject } from '../states';
+import { statesObject } from '../common/states';
 import OceanIcon from '../../../public/view_icon.png';
 import { FaHotjar } from "react-icons/fa";
 import ReservationForm from '../reservations/ReservationForm';

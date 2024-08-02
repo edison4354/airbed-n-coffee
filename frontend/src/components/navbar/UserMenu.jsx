@@ -1,7 +1,7 @@
 import { AiOutlineMenu } from 'react-icons/ai'
 import { useCallback, useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Avatar from '../Avatar';
+import Avatar from '../common/Avatar';
 import MenuItem from './MenuItem';
 import { openLoginModal, openRegisterModal } from '../../store/modal';
 import * as sessionActions from '../../store/session';

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { statesObject } from '../states';
+import { statesObject } from '../common/states';
 import { useNavigate } from 'react-router-dom';
 
 const TripCard = memo(({ reservation }) => {
