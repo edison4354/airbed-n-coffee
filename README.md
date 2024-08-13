@@ -195,3 +195,7 @@ const ListingCard = ({ listing }) => {
           end
       end
     ```
+## Future Implementation
+- Reivews
+- Search Functionality
+- Google map api integration 
