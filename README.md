@@ -196,6 +196,7 @@ const ListingCard = ({ listing }) => {
       end
     ```
 ## Future Implementation
-- Reivews
+- Reivews 
 - Search Functionality
-- Google map api integration 
+- Google map api integration
+- Favorites/Saved
